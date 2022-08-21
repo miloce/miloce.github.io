@@ -1,0 +1,479 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Vulhub靶场搭建教程 | 洛栀の小窝</title><meta name="keywords" content="文件,对应,网络,程序,docker,镜像,地址,命令,软件,后台,漏洞,运行,exec,安装,sudo,vulhub"><meta name="author" content="洛栀"><meta name="copyright" content="洛栀"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Vulhub靶机环境搭建Vulhub地址： Vulhub下载地址一、所需环境1、Ubuntu16.042、最新版本Docker二、安装之路1、下载Ubuntu16.04下载地址（迅雷下载64位，下载快速）PS：千万别用32位，32位环境很多64位程序都不支持。2、VM安装Ubuntu虚拟机、选择典型安装，如下图所示：并且提前装载好ISO，如下图所示：下一步配置好主机名称，账户和密码，千万别进去配置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vulhub靶场搭建教程">
+<meta property="og:url" content="https://luozhinet.com/posts/b38ac66a865e/index.html">
+<meta property="og:site_name" content="洛栀の小窝">
+<meta property="og:description" content="Vulhub靶机环境搭建Vulhub地址： Vulhub下载地址一、所需环境1、Ubuntu16.042、最新版本Docker二、安装之路1、下载Ubuntu16.04下载地址（迅雷下载64位，下载快速）PS：千万别用32位，32位环境很多64位程序都不支持。2、VM安装Ubuntu虚拟机、选择典型安装，如下图所示：并且提前装载好ISO，如下图所示：下一步配置好主机名称，账户和密码，千万别进去配置">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/d.png">
+<meta property="article:published_time" content="2022-06-02T04:14:00.000Z">
+<meta property="article:modified_time" content="2022-06-02T18:04:48.283Z">
+<meta property="article:author" content="洛栀">
+<meta property="article:tag" content="文件">
+<meta property="article:tag" content="对应">
+<meta property="article:tag" content="网络">
+<meta property="article:tag" content="程序">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="镜像">
+<meta property="article:tag" content="地址">
+<meta property="article:tag" content="命令">
+<meta property="article:tag" content="软件">
+<meta property="article:tag" content="后台">
+<meta property="article:tag" content="漏洞">
+<meta property="article:tag" content="运行">
+<meta property="article:tag" content="exec">
+<meta property="article:tag" content="安装">
+<meta property="article:tag" content="sudo">
+<meta property="article:tag" content="vulhub">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/d.png"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://luozhinet.com/posts/b38ac66a865e/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="txqQxPhST9jFL0K2"/><link rel="manifest" href="/manifest.json"/><meta name="msapplication-TileColor" content="#212121"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/favicon-16x16.png"/><link rel="mask-icon" href="/img/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://jsdelivr.luozhinet.com/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://jsdelivr.luozhinet.com/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://jsdelivr.luozhinet.com/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-7237954999881644',
+  enable_page_level_ads: 'true'
+});</script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8a61754693ac9e7e91cd8cfc00cf88e5";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":20,"languages":{"author":"作者: 洛栀","link":"链接: ","source":"来源: 洛栀の小窝","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://jsdelivr.luozhinet.com/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://jsdelivr.luozhinet.com/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Vulhub靶场搭建教程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-06-03 02:04:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta http-equiv='content-language' content='zh-cn'><meta name='description' content='Luozhinet.com - 洛栀的学习分享博客。'><link rel="stylesheet" href="/css/ycmusic.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/test.css"><link rel="stylesheet" href="/css/custom.css"><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-sun" viewBox="0 0 1024 1024"><path d="M960 512l-128 128v192h-192l-128 128-128-128H192v-192l-128-128 128-128V192h192l128-128 128 128h192v192z" fill="#FFD878" p-id="8420"></path><path d="M736 512a224 224 0 1 0-448 0 224 224 0 1 0 448 0z" fill="#FFE4A9" p-id="8421"></path><path d="M512 109.248L626.752 224H800v173.248L914.752 512 800 626.752V800h-173.248L512 914.752 397.248 800H224v-173.248L109.248 512 224 397.248V224h173.248L512 109.248M512 64l-128 128H192v192l-128 128 128 128v192h192l128 128 128-128h192v-192l128-128-128-128V192h-192l-128-128z" fill="#4D5152" p-id="8422"></path><path d="M512 320c105.888 0 192 86.112 192 192s-86.112 192-192 192-192-86.112-192-192 86.112-192 192-192m0-32a224 224 0 1 0 0 448 224 224 0 0 0 0-448z" fill="#4D5152" p-id="8423"></path></symbol><symbol id="icon-moon" viewBox="0 0 1024 1024"><path d="M611.370667 167.082667a445.013333 445.013333 0 0 1-38.4 161.834666 477.824 477.824 0 0 1-244.736 244.394667 445.141333 445.141333 0 0 1-161.109334 38.058667 85.077333 85.077333 0 0 0-65.066666 135.722666A462.08 462.08 0 1 0 747.093333 102.058667a85.077333 85.077333 0 0 0-135.722666 65.024z" fill="#FFB531" p-id="11345"></path><path d="M329.728 274.133333l35.157333-35.157333a21.333333 21.333333 0 1 0-30.165333-30.165333l-35.157333 35.157333-35.114667-35.157333a21.333333 21.333333 0 0 0-30.165333 30.165333l35.114666 35.157333-35.114666 35.157334a21.333333 21.333333 0 1 0 30.165333 30.165333l35.114667-35.157333 35.157333 35.157333a21.333333 21.333333 0 1 0 30.165333-30.165333z" fill="#030835" p-id="11346"></path></symbol></svg><a onclick="switchNightMode()" class="icon-V hidden" title="切换日间/夜间模式"><svg width="48" height="48" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon"></use></svg></a><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="/lib/runtime.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/lib/swiper.min.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="洛栀の小窝" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "/img/planeloading.jpg" data-lazy-src="https://q1.qlogo.cn/g?b=qq&amp;nk=2855595515&amp;s=640" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">99</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">405</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://check.luozhinet.com/"><i class="fa-fw fas fa-chart-simple"></i><span> 网站监控</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://server.luozhinet.com/"><i class="fa-fw fas fa-atom-simple"></i><span> 评论后台</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/d.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">洛栀の小窝</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://check.luozhinet.com/"><i class="fa-fw fas fa-chart-simple"></i><span> 网站监控</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://server.luozhinet.com/"><i class="fa-fw fas fa-atom-simple"></i><span> 评论后台</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Vulhub靶场搭建教程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-06-02T04:14:00.000Z" title="发表于 2022-06-02 12:14:00">2022-06-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-06-02T18:04:48.283Z" title="更新于 2022-06-03 02:04:48">2022-06-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/">技术教程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="leancloud_visitors" id="/posts/b38ac66a865e/" data-flag-title="Vulhub靶场搭建教程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span class="leancloud-visitors-count"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/posts/b38ac66a865e/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/posts/b38ac66a865e/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Vulhub靶机环境搭建"><a href="#Vulhub靶机环境搭建" class="headerlink" title="Vulhub靶机环境搭建"></a>Vulhub靶机环境搭建</h2><h3 id="Vulhub地址：-Vulhub下载地址"><a href="#Vulhub地址：-Vulhub下载地址" class="headerlink" title="Vulhub地址： Vulhub下载地址"></a>Vulhub地址： <a target="_blank" rel="noopener" href="https://github.com/vulhub/vulhub/">Vulhub下载地址</a></h3><h3 id="一、所需环境"><a href="#一、所需环境" class="headerlink" title="一、所需环境"></a>一、所需环境</h3><h4 id="1、Ubuntu16-04"><a href="#1、Ubuntu16-04" class="headerlink" title="1、Ubuntu16.04"></a>1、Ubuntu16.04</h4><h4 id="2、最新版本Docker"><a href="#2、最新版本Docker" class="headerlink" title="2、最新版本Docker"></a>2、最新版本Docker</h4><h3 id="二、安装之路"><a href="#二、安装之路" class="headerlink" title="二、安装之路"></a>二、安装之路</h3><h4 id="1、下载Ubuntu16-04下载地址（迅雷下载64位，下载快速）PS：千万别用32位，32位环境很多64位程序都不支持。"><a href="#1、下载Ubuntu16-04下载地址（迅雷下载64位，下载快速）PS：千万别用32位，32位环境很多64位程序都不支持。" class="headerlink" title="1、下载Ubuntu16.04下载地址（迅雷下载64位，下载快速）PS：千万别用32位，32位环境很多64位程序都不支持。"></a>1、下载Ubuntu16.04<a target="_blank" rel="noopener" href="http://mirrors.163.com/ubuntu-releases/16.04/ubuntu-16.04.6-server-amd64.iso.torrent">下载地址</a>（迅雷下载64位，下载快速）PS：千万别用32位，32位环境很多64位程序都不支持。</h4><h4 id="2、VM安装Ubuntu虚拟机、"><a href="#2、VM安装Ubuntu虚拟机、" class="headerlink" title="2、VM安装Ubuntu虚拟机、"></a>2、VM安装Ubuntu虚拟机、</h4><p>选择典型安装，如下图所示：<br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/81/1df2d3fdd764cd9b182fb89c981e62"><br>并且提前装载好ISO，如下图所示：<br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/69/98f71cfaf3d219062b5d22a6f3fed0"><br>下一步配置好主机名称，账户和密码，千万别进去配置，不然巨麻烦，你如果不懂可能配置一个小时还没安装好，我这种方法，不需要进去点击任何操作，它自动把系统配置好了，10分钟左右系统就装好了，如下图所示：<br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/92/685a3b3039edb47ab5a67ecadab94e"><br>如下代表系统安装好了<br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/76/7b40fc6ce04ae57581c7504991e32f"></p>
+<h4 id="2、Ubuntu配置"><a href="#2、Ubuntu配置" class="headerlink" title="2、Ubuntu配置"></a>2、Ubuntu配置</h4><ul>
+<li>坑点1：Ubuntu虚拟机装好了，默认是没有SSH的，你是无法通过ssh登陆配置的。</li>
+<li>坑点2：且默认镜像源是加载CD盘，导致你无法通过apt-get install安装openssh。</li>
+<li>坑点3：且默认镜像源是美国的，境内的网络是无法去访问美国源下载，所以需要替换成境内镜像源，</li>
+<li>坑点4：但是尴尬点又来了，你想把境内源（内容很多，手打不现实）通过虚拟机拷贝，发现你是无法进行拷贝操作的。</li>
+<li>坑点5：Ubuntu默认root账户是随机密码，所以你不知道root什么密码，无法使用root账户进行安装？</li>
+</ul>
+<h4 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h4><p>Ubuntu国内镜像源：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">deb-src http://archive.ubuntu.com/ubuntu xenial main restricted #Added by software-properties</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial main restricted multiverse universe #Added by software-properties</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted multiverse universe #Added by software-properties</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial universe</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse #Added by software-properties</span><br><span class="line">deb http://archive.canonical.com/ubuntu xenial partner</span><br><span class="line">deb-src http://archive.canonical.com/ubuntu xenial partner</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted multiverse universe #Added by software-properties</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse</span><br></pre></td></tr></table></figure>
+
+<p><code>sudo apt-get install apt-transport-https ca-certificates software-properties-commonsudo add-apt-repository \</code></p>
+<p>（1） 宿主机搞个国外的VPN（没有VPN就试试运气能不能访问把，哈.哈），让虚拟机通过NAT出去上国外的网，将&#x2F;etc&#x2F;resolv.conf的首DNS改成8.8.8.8<br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/51/011acd3e7e849ba7f44b6a5a8cc413"><br>（2） 将root密码进行修改<br>使用<code>sudo passwd</code>命令进行修改，连续输入三次当前账户的密码，root密码就和当前账户密码一样。<br>然后使用<code>su – root</code>切换到root账户输入root密码进行安装 ，中间必须有空格。<br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/14/a8e29a9835d779705f48619da1b551"><br>（3） 将默认源&#x2F;etc&#x2F;apt&#x2F;sources.list 加载CD盘的配置删除，就是这行<br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/de/b6aa77931885b23ff6a1723728b694"><br>（4） 删除完毕之后，更新镜像源，使用命令sudo apt-get update 进行更新<br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/df/8f25920b0d6422cb5c4e8b8cffc7cf"><br>（5） 更新完之后，你就可以安装opensssh了，安装opesn命令：<code>sudo apt-get install openssh-server</code>ssh安装完之后，ssh服务自动起来，就可以用xshell连接了<br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/f4/d57530fcb1b8b1c26760eee7bbfae6"><br>（6） ssh登陆上来，首先切换到root用户，然后将默认源进行备份，将上面的国内源进行替换。<code>cd /etc/apt/</code> 切换到镜像目录<code>mv sources.list source.yuanshi.list</code><br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/2f/547cc7f671da2450e99d26ed55a2b4"><br>这时，再用sz命令将本地的source.list上传到当前目录<br>（7） 输入sz命令提示不存在该命令，按照提示安装即可。<br>（8） 将默认源替换成国内源之后，随后就更新镜像源，更新命令<code>sudo apt-get update</code><br>（9） 这时，你就已经基本配置好Ubuntu环境了，接下来开始安装docker环境。</p>
+<h4 id="3、安装docker存储库"><a href="#3、安装docker存储库" class="headerlink" title="3、安装docker存储库"></a>3、安装docker存储库</h4><p>（1）安装软件包以允许 apt 通过 HTTPS 使用存储库，输入以下命令安装软件包：<br><code>sudo apt-get install apt-transport-https ca-certificates curl software-properties-common</code><br>（2）添加 Docker 官方的 GPG 密钥：<br><code>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - header</code><br>确保现在系统已经拥有密钥指纹的后八个字符串：9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88 ，输入指令：<br><code>sudo apt-key fingerprint 0EBFCD88</code><br>显示结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pub   4096R/0EBFCD88 2017-02-22</span><br><span class="line">      密钥指纹 = 9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88</span><br><span class="line">uid                  Docker Release (CE deb) &lt;docker@docker.com&gt;</span><br><span class="line">sub   4096R/F273FCD8 2017-02-22</span><br></pre></td></tr></table></figure>
+
+<p>（3）安装docker稳定版仓库：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository &quot;deb [arch=amd64] \</span><br><span class="line">https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4、安装docker"><a href="#4、安装docker" class="headerlink" title="4、安装docker"></a>4、安装docker</h4><p>（1）更新apt镜像源索引，命令如下：<br><code>sudo apt-get update</code><br>（2）安装最新版的 Docker CE（docker社区版）<br><code>sudo apt-get install docker-ce</code><br>（3）如果不想安装最新版的 Docker，可以先查看可安装版本<br><code>apt-cache madison docker-ce</code><br>显示结果如下：<br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/bc/b68cb12573c920d53435e2eaa0d8fd"><br>列表的内容取决于启用了哪个存储库。第二列是Docker版本号。第三列是存储库名称，它指明了软件包来自哪个存储存储库，并通过扩展其稳定性级别。要安装特定版本，需要将本本字符串附加到包名称。<br>（4）安装指令如下：<br><code>sudo apt-get install docker-ce=&lt;VERSION&gt;</code><br>（5）通过运行 hello-world 镜像验证 Docker CE 已被正确安装<br><code>sudo docker run hello-world</code><br>若出现以下信息则表明安装成功：<br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/f4/2a8add59def007ecfcaa102ab683c1"></p>
+<ul>
+<li>安装pip，命令如下：<br><code>curl -s https://bootstrap.pypa.io/get-pip.py | python3</code></li>
+<li>安装docker compose<br><code>pip install docker-compose</code></li>
+</ul>
+<h4 id="5、安装vulhub"><a href="#5、安装vulhub" class="headerlink" title="5、安装vulhub"></a>5、安装vulhub</h4><p>在根目录下新增一个文件夹，然后下载vulhub解压<br><strong>下载项目命令：</strong><code>wget https://github.com/vulhub/vulhub/archive/master.zip -O vulhub-master.zip</code>（这里国内下载很慢，可以找我要已经下载好的Vulhub-54Mb）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unzip vulhub-master.zip</span><br><span class="line">cd vulhub-master</span><br></pre></td></tr></table></figure>
+
+<p>如下，就代表vulhub漏洞环境下载下来了，几乎涵盖百分之80常见可验证漏洞环境。<br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/d7/e93be4d4f2145a80601d3682e649fc"></p>
+<h4 id="6、Vulhub使用"><a href="#6、Vulhub使用" class="headerlink" title="6、Vulhub使用"></a>6、Vulhub使用</h4><p>这里演示activmq的漏洞cve-2016-3088为例子，Vulhub的便利就是在于不要我们去搭建环境，直接使用docker环境编译漏洞环境，就可启动漏洞环境。<br>首先进入该漏洞环境命令如下：<br><code>cd activemq/CVE-2016-3088/</code><br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/5f/d0d6aee76def6caaaf47bd866ff10a"><br>启动漏洞环境命令<br><code>docker-compose up -d</code><br><strong>备注：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d （推荐）或者 docker-compose build</span><br><span class="line">PS: 为什么 docker-compose build是可选的？</span><br><span class="line">docker-compose up -d运行后，会自动查找当前目录下的配置文件。如果配置文件中包含的环境均已经存在，则不会再次编译；如果配置文件中包含的环境不存在，则会自动进行编译。所以，其实 docker-compose up -d命令是包含了 docker-compose build的。</span><br><span class="line">如果更新了配置文件，你可以手工执行 docker-compose build来重新编译靶场环境。</span><br><span class="line">等待运行结束，即可自动配置好环境，然后运行</span><br></pre></td></tr></table></figure>
+
+<p>下图代表启动成功<br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/c8/cf18b244e6c48e482a5baf646809c1"><br>使用docker ps可以看到容器已经起来，8181端口，容器ID 2bd961162b0d<br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/e9/b4b18a9c20ac3b26dcb3efd4954f50"><br>使用netstat也可以看到docker 代理监听端口为8161<br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/e3/05d34e4686a9f8825b554adeb3dd43"><br>进入容器内部看看，命令如下：<br><code>docker container exec -it 2bd961162b0d /bin/bash</code><br>下图代表我们进入activemq虚拟机了，docker就相当于时容器的宿主机。<br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/27/690668def708c9e254a55d90f6cfb3"><br>下图为已经运行的服务，使用http:&#x2F;&#x2F;虚拟机ip:8161<br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/c3/2838dfef2328694829e2524ed0da49"></p>
+<h4 id="7、弱口令漏洞验证"><a href="#7、弱口令漏洞验证" class="headerlink" title="7、弱口令漏洞验证"></a>7、弱口令漏洞验证</h4><p>Activemq后台地址是admin，密码是admin&#x2F;admin，我们尝试登陆成功。<br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/42/de5c2ba05e4dd682823a276560829e"><br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/96/e192b1ae660dc49a8f5be74af0fa7c"><br><strong>【重要】</strong>测试完毕之后，在漏洞环境目录下使用<br><code>docker-compose down -v</code><br>即可结束服务，使环境变为初始状态。<br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/2e/16557916428e62172a006c715ded78"><br>其他漏洞参考vulhub的每个漏洞环境描述(README.zh-cn.md)，都已经写明漏洞利用方法，写的非常明白详细。</p>
+<p>如cve-2016-3088，我们在github的Vulhub找到对应漏洞说明即可验证，如图<br><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/76/338a65588733f7f93646d8d259ca54"><br>该漏洞描述链接:<a target="_blank" rel="noopener" href="https://github.com/vulhub/vulhub/blob/master/activemq/CVE-2016-3088/README.zh-cn.md">链接地址</a></p>
+<h4 id="8、Dockcer常用命令"><a href="#8、Dockcer常用命令" class="headerlink" title="8、Dockcer常用命令"></a>8、Dockcer常用命令</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker ps 查看当前开启了哪些docker容器</span><br><span class="line"></span><br><span class="line">进入对应容器  docker container exec -it 容器id /bin/bash </span><br><span class="line"></span><br><span class="line">docker version 检查版本信息</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、参考链接"><a href="#三、参考链接" class="headerlink" title="三、参考链接"></a>三、参考链接</h3><h4 id="1、docker安装"><a href="#1、docker安装" class="headerlink" title="1、docker安装"></a>1、docker安装</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/diligent_lee/article/details/79098302?utm_source=blogxgwz17">https://blog.csdn.net/diligent_lee&#x2F;article&#x2F;details&#x2F;79098302?utm_source&#x3D;blogxgwz17</a></p>
+<h4 id="2、vulhub安装"><a href="#2、vulhub安装" class="headerlink" title="2、vulhub安装"></a>2、vulhub安装</h4><p><a target="_blank" rel="noopener" href="https://github.com/vulhub/vulhub/blob/master/README.zh-cn.md">https://github.com/vulhub/vulhub/blob/master/README.zh-cn.md</a><br><a target="_blank" rel="noopener" href="https://www.freebuf.com/sectool/165062.html">https://www.freebuf.com/sectool/165062.html</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://luozhinet.com">洛栀</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://luozhinet.com/posts/b38ac66a865e/">https://luozhinet.com/posts/b38ac66a865e/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://luozhinet.com" target="_blank">洛栀の小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%96%87%E4%BB%B6/">文件</a><a class="post-meta__tags" href="/tags/%E5%AF%B9%E5%BA%94/">对应</a><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C/">网络</a><a class="post-meta__tags" href="/tags/%E7%A8%8B%E5%BA%8F/">程序</a><a class="post-meta__tags" href="/tags/docker/">docker</a><a class="post-meta__tags" href="/tags/%E9%95%9C%E5%83%8F/">镜像</a><a class="post-meta__tags" href="/tags/%E5%9C%B0%E5%9D%80/">地址</a><a class="post-meta__tags" href="/tags/%E5%91%BD%E4%BB%A4/">命令</a><a class="post-meta__tags" href="/tags/%E8%BD%AF%E4%BB%B6/">软件</a><a class="post-meta__tags" href="/tags/%E5%90%8E%E5%8F%B0/">后台</a><a class="post-meta__tags" href="/tags/%E6%BC%8F%E6%B4%9E/">漏洞</a><a class="post-meta__tags" href="/tags/%E8%BF%90%E8%A1%8C/">运行</a><a class="post-meta__tags" href="/tags/exec/">exec</a><a class="post-meta__tags" href="/tags/%E5%AE%89%E8%A3%85/">安装</a><a class="post-meta__tags" href="/tags/sudo/">sudo</a><a class="post-meta__tags" href="/tags/vulhub/">vulhub</a></div><div class="post_share"><div class="social-share" data-image="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/d.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://jsdelivr.luozhinet.com/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://jsdelivr.luozhinet.com/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/qqpay.png" target="_blank"><img class="post-qr-code-img" src= "/img/planeloading.jpg" data-lazy-src="/img/qqpay.png" alt="qqpay"/></a><div class="post-qr-code-desc">qqpay</div></li><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src= "/img/planeloading.jpg" data-lazy-src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.png" target="_blank"><img class="post-qr-code-img" src= "/img/planeloading.jpg" data-lazy-src="/img/alipay.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/ab00480b6740/"><img class="prev-cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/d.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">移动电信联通三网改套餐项目操作步骤</div></div></a></div><div class="next-post pull-right"><a href="/posts/145ae8ead9d3/"><img class="next-cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/l.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">数据库系列：高并发下的数据字段变更</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/2c9261572067/" title="用树莓派USB摄像头做个监控"><img class="cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/j.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-31</div><div class="title">用树莓派USB摄像头做个监控</div></div></a></div><div><a href="/posts/fc69325788da/" title="CA证书介绍与格式转换"><img class="cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/a.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-31</div><div class="title">CA证书介绍与格式转换</div></div></a></div><div><a href="/posts/93f4c35cf675/" title="云服务器部署前后端分离项目（若依）详细教程"><img class="cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/m.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-11</div><div class="title">云服务器部署前后端分离项目（若依）详细教程</div></div></a></div><div><a href="/posts/f52177d9e0d7/" title="Docker"><img class="cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/i.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-12</div><div class="title">Docker</div></div></a></div><div><a href="/posts/e49415651ef4/" title="创建Windows 7虚拟机（workstation工具）"><img class="cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/m.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-12</div><div class="title">创建Windows 7虚拟机（workstation工具）</div></div></a></div><div><a href="/posts/145ae8ead9d3/" title="数据库系列：高并发下的数据字段变更"><img class="cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/l.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-01</div><div class="title">数据库系列：高并发下的数据字段变更</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vulhub%E9%9D%B6%E6%9C%BA%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">Vulhub靶机环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Vulhub%E5%9C%B0%E5%9D%80%EF%BC%9A-Vulhub%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="toc-number">1.1.</span> <span class="toc-text">Vulhub地址： Vulhub下载地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%89%80%E9%9C%80%E7%8E%AF%E5%A2%83"><span class="toc-number">1.2.</span> <span class="toc-text">一、所需环境</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81Ubuntu16-04"><span class="toc-number">1.2.1.</span> <span class="toc-text">1、Ubuntu16.04</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%ACDocker"><span class="toc-number">1.2.2.</span> <span class="toc-text">2、最新版本Docker</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85%E4%B9%8B%E8%B7%AF"><span class="toc-number">1.3.</span> <span class="toc-text">二、安装之路</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E4%B8%8B%E8%BD%BDUbuntu16-04%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80%EF%BC%88%E8%BF%85%E9%9B%B7%E4%B8%8B%E8%BD%BD64%E4%BD%8D%EF%BC%8C%E4%B8%8B%E8%BD%BD%E5%BF%AB%E9%80%9F%EF%BC%89PS%EF%BC%9A%E5%8D%83%E4%B8%87%E5%88%AB%E7%94%A832%E4%BD%8D%EF%BC%8C32%E4%BD%8D%E7%8E%AF%E5%A2%83%E5%BE%88%E5%A4%9A64%E4%BD%8D%E7%A8%8B%E5%BA%8F%E9%83%BD%E4%B8%8D%E6%94%AF%E6%8C%81%E3%80%82"><span class="toc-number">1.3.1.</span> <span class="toc-text">1、下载Ubuntu16.04下载地址（迅雷下载64位，下载快速）PS：千万别用32位，32位环境很多64位程序都不支持。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81VM%E5%AE%89%E8%A3%85Ubuntu%E8%99%9A%E6%8B%9F%E6%9C%BA%E3%80%81"><span class="toc-number">1.3.2.</span> <span class="toc-text">2、VM安装Ubuntu虚拟机、</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Ubuntu%E9%85%8D%E7%BD%AE"><span class="toc-number">1.3.3.</span> <span class="toc-text">2、Ubuntu配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A"><span class="toc-number">1.3.4.</span> <span class="toc-text">解决方案：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%AE%89%E8%A3%85docker%E5%AD%98%E5%82%A8%E5%BA%93"><span class="toc-number">1.3.5.</span> <span class="toc-text">3、安装docker存储库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E5%AE%89%E8%A3%85docker"><span class="toc-number">1.3.6.</span> <span class="toc-text">4、安装docker</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E5%AE%89%E8%A3%85vulhub"><span class="toc-number">1.3.7.</span> <span class="toc-text">5、安装vulhub</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6%E3%80%81Vulhub%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.8.</span> <span class="toc-text">6、Vulhub使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7%E3%80%81%E5%BC%B1%E5%8F%A3%E4%BB%A4%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81"><span class="toc-number">1.3.9.</span> <span class="toc-text">7、弱口令漏洞验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8%E3%80%81Dockcer%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.10.</span> <span class="toc-text">8、Dockcer常用命令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">1.4.</span> <span class="toc-text">三、参考链接</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81docker%E5%AE%89%E8%A3%85"><span class="toc-number">1.4.1.</span> <span class="toc-text">1、docker安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81vulhub%E5%AE%89%E8%A3%85"><span class="toc-number">1.4.2.</span> <span class="toc-text">2、vulhub安装</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By 洛栀</div><div class="framework-info"><span>网站地图 </span><a href="https://luozhinet.com/atom.xml">Atom</a><span class="footer-separator">|</span><span>托管 </span><a target="_blank" rel="noopener" href="https://github.com/luozhixiaowo">github</a></div><div class="footer_custom_text">Hi, welcome to my <a href="https://luozhinet.com/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://jsdelivr.luozhinet.com/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://jsdelivr.luozhinet.com/npm/instant.page@5/instantpage.min.js" type="module"></script><script src="https://jsdelivr.luozhinet.com/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://jsdelivr.luozhinet.com/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://jsdelivr.luozhinet.com/npm/pangu@4/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://jsdelivr.luozhinet.com/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oftbERdAPRh3XBvrndKO45QB-MdYXbMMI',
+      appKey: 'oyovhEFbGgFMhGBKg7tCxG56',
+      master: '11f18018abc6766ebba9eea284274bb0',
+      friends: 'e4971cbb8c59b7440eacb823c2893341',
+      placeholder: '请开始你的表演，请文明发言哦🍃\n昵称框建议使用QQ，自动获取头像与昵称🌿',
+      avatar: 'mp',
+      bg: 'img/comment.gif',
+      recordIP: 'true',
+      enableQQ: 'true',
+      serverURLs: 'https://oftberda.api.lncldglobal.com/',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://jsdelivr.luozhinet.com/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7418767218" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><script type="text/javascript" src="http://43.142.176.17/visitorip.php"></script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script defer src="/js/sun_moon.js"></script><script defer src="/js/beidu.js"></script><script defer src="/js/custom.js"></script><script> let backimg =["url(/img/background1.jpg)","url(/img/background2.jpg)","url(/img/background3.jpg)","url(/img/background4.jpg)","url(/img/background5.jpg)","url(/img/background6.jpg)","url(/img/background7.jpg)"];let index =Math.ceil(Math.random() * (backimg.length-1))-1;document.getElementById("web_bg").style.backgroundImage = backimg[index]</script><canvas class="fireworks" mobile="true"></canvas><script src="https://jsdelivr.luozhinet.com/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://jsdelivr.luozhinet.com/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://jsdelivr.luozhinet.com/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="//code.tidio.co/bjdwqvek4tmoarfd0is5fub5pyauuabz.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><link rel="stylesheet" href="https://jsdelivr.luozhinet.com/npm/aplayer@1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://jsdelivr.luozhinet.com/npm/aplayer@1/dist/APlayer.min.js"></script><script src="https://jsdelivr.luozhinet.com/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://jsdelivr.luozhinet.com/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="app-refresh" id="app-refresh" style="position: fixed;top: -2.2rem;left: 0;right: 0;z-index: 99999;padding: 0 1rem;font-size: 15px;height: 2.2rem;transition: all 0.3s ease;"><div class="app-refresh-wrap" style=" display: flex;color: #fff;height: 100%;align-items: center;justify-content: center;"><label>✨ 小窝更新啦！ 👉</label><a href="javascript:void(0)" onclick="location.reload(true)"><span style="color: #fff;text-decoration: underline;cursor: pointer;">🍭查看新品🍬</span></a></div></div><script>if ('serviceWorker' in navigator) {
+if (navigator.serviceWorker.controller) {
+navigator.serviceWorker.addEventListener('controllerchange', function() {
+showNotification()
+})
+}
+window.addEventListener('load', function() {
+navigator.serviceWorker.register('/sw.js')
+})
+}
+function showNotification() {
+if (GLOBAL_CONFIG.Snackbar) {
+var snackbarBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+GLOBAL_CONFIG.Snackbar.bgLight :
+GLOBAL_CONFIG.Snackbar.bgDark
+var snackbarPos = GLOBAL_CONFIG.Snackbar.position
+Snackbar.show({
+text: '✨ 小窝更新啦！ 👉',
+backgroundColor: snackbarBg,
+duration: 500000,
+pos: snackbarPos,
+actionText: '🍭查看新品🍬',
+actionTextColor: '#fff',
+onActionClick: function(e) {
+location.reload()
+},
+})
+} else {
+var showBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+'#49b1f5' :
+'#1f1f1f'
+var cssText = `top: 0; background: ${showBg};`
+document.getElementById('app-refresh').style.cssText = cssText
+}
+}</script></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://jsdelivr.luozhinet.com/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?luozhixiaowo";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="luozhixiaowo";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="height:100%;display: flex;align-items: center;justify-content: center;"><svg style="height:50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:248px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/Zfour/Butterfly-clock/clock/images/weather/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="ghbdages" style="overflow:hidden;max-height:90px;height:auto;text-align:center;margin-top:10px"><div class="swiper-wrapper"><div class="swiper-slide"><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" title="本站采用双线部署，联通线路托管于Vercel"><img src= "/img/planeloading.jpg" data-lazy-src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://dashboard.4everland.org/" style="margin-inline:5px" title="本站采用双线部署，默认线路托管于4everland"><img src= "/img/planeloading.jpg" data-lazy-src="https://img.shields.io/badge/Hosted-4everland-0cedbe?style=flat&amp;logo=4everland" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" title="本站项目由Github托管"><img src= "/img/planeloading.jpg" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a></div></div></div><style>a.github-badge:hover:before {display:none}</style>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script defer src="/lib/swiper.min.js"></script><script defer data-pjax src="/lib/swiperbdage_init.min.js"></script><!-- hexo injector body_end end --><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
