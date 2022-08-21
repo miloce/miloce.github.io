@@ -1,0 +1,563 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>云服务器部署前后端分离项目（若依）详细教程 | 洛栀の小窝</title><meta name="keywords" content="操作,密码,服务,服务器,账号,方法,文件,run,目录,域名,部署,指令,镜像,nginx,修改,地址,int,java,public,username,时间,命令,user,视频,mysql,日志,sql,端口"><meta name="author" content="洛栀"><meta name="copyright" content="洛栀"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="镜像下载、域名解析、时间同步请点击 阿里云开源镜像站 第一次在Linux云服务器上部署前后端分离项目，查了很多资料和视频，踩了许多坑。成功实现部署若依的前后端分离项目后，想记录一下前后端部署的过程，供学习的小伙伴参考。 1.环境准备一定要在开始前先准备好以下工具和环境（可以上网查找安装的方法），后续还会对其进行修改：  购买一个云服务器，例如阿里云等等，操作系统为Linux centos7.x 在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="云服务器部署前后端分离项目（若依）详细教程">
+<meta property="og:url" content="https://luozhinet.com/posts/93f4c35cf675/index.html">
+<meta property="og:site_name" content="洛栀の小窝">
+<meta property="og:description" content="镜像下载、域名解析、时间同步请点击 阿里云开源镜像站 第一次在Linux云服务器上部署前后端分离项目，查了很多资料和视频，踩了许多坑。成功实现部署若依的前后端分离项目后，想记录一下前后端部署的过程，供学习的小伙伴参考。 1.环境准备一定要在开始前先准备好以下工具和环境（可以上网查找安装的方法），后续还会对其进行修改：  购买一个云服务器，例如阿里云等等，操作系统为Linux centos7.x 在">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/l.png">
+<meta property="article:published_time" content="2022-05-11T03:37:00.000Z">
+<meta property="article:modified_time" content="2022-05-18T15:05:28.233Z">
+<meta property="article:author" content="洛栀">
+<meta property="article:tag" content="操作">
+<meta property="article:tag" content="密码">
+<meta property="article:tag" content="服务">
+<meta property="article:tag" content="服务器">
+<meta property="article:tag" content="账号">
+<meta property="article:tag" content="方法">
+<meta property="article:tag" content="文件">
+<meta property="article:tag" content="run">
+<meta property="article:tag" content="目录">
+<meta property="article:tag" content="域名">
+<meta property="article:tag" content="部署">
+<meta property="article:tag" content="指令">
+<meta property="article:tag" content="镜像">
+<meta property="article:tag" content="nginx">
+<meta property="article:tag" content="修改">
+<meta property="article:tag" content="地址">
+<meta property="article:tag" content="int">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="public">
+<meta property="article:tag" content="username">
+<meta property="article:tag" content="时间">
+<meta property="article:tag" content="命令">
+<meta property="article:tag" content="user">
+<meta property="article:tag" content="视频">
+<meta property="article:tag" content="mysql">
+<meta property="article:tag" content="日志">
+<meta property="article:tag" content="sql">
+<meta property="article:tag" content="端口">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/l.png"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://luozhinet.com/posts/93f4c35cf675/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="txqQxPhST9jFL0K2"/><link rel="manifest" href="/manifest.json"/><meta name="msapplication-TileColor" content="#212121"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/favicon-16x16.png"/><link rel="mask-icon" href="/img/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://jsdelivr.luozhinet.com/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://jsdelivr.luozhinet.com/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://jsdelivr.luozhinet.com/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-7237954999881644',
+  enable_page_level_ads: 'true'
+});</script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8a61754693ac9e7e91cd8cfc00cf88e5";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":20,"languages":{"author":"作者: 洛栀","link":"链接: ","source":"来源: 洛栀の小窝","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://jsdelivr.luozhinet.com/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://jsdelivr.luozhinet.com/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '云服务器部署前后端分离项目（若依）详细教程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-18 23:05:28'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta http-equiv='content-language' content='zh-cn'><meta name='description' content='Luozhinet.com - 洛栀的学习分享博客。'><link rel="stylesheet" href="/css/ycmusic.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/test.css"><link rel="stylesheet" href="/css/custom.css"><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-sun" viewBox="0 0 1024 1024"><path d="M960 512l-128 128v192h-192l-128 128-128-128H192v-192l-128-128 128-128V192h192l128-128 128 128h192v192z" fill="#FFD878" p-id="8420"></path><path d="M736 512a224 224 0 1 0-448 0 224 224 0 1 0 448 0z" fill="#FFE4A9" p-id="8421"></path><path d="M512 109.248L626.752 224H800v173.248L914.752 512 800 626.752V800h-173.248L512 914.752 397.248 800H224v-173.248L109.248 512 224 397.248V224h173.248L512 109.248M512 64l-128 128H192v192l-128 128 128 128v192h192l128 128 128-128h192v-192l128-128-128-128V192h-192l-128-128z" fill="#4D5152" p-id="8422"></path><path d="M512 320c105.888 0 192 86.112 192 192s-86.112 192-192 192-192-86.112-192-192 86.112-192 192-192m0-32a224 224 0 1 0 0 448 224 224 0 0 0 0-448z" fill="#4D5152" p-id="8423"></path></symbol><symbol id="icon-moon" viewBox="0 0 1024 1024"><path d="M611.370667 167.082667a445.013333 445.013333 0 0 1-38.4 161.834666 477.824 477.824 0 0 1-244.736 244.394667 445.141333 445.141333 0 0 1-161.109334 38.058667 85.077333 85.077333 0 0 0-65.066666 135.722666A462.08 462.08 0 1 0 747.093333 102.058667a85.077333 85.077333 0 0 0-135.722666 65.024z" fill="#FFB531" p-id="11345"></path><path d="M329.728 274.133333l35.157333-35.157333a21.333333 21.333333 0 1 0-30.165333-30.165333l-35.157333 35.157333-35.114667-35.157333a21.333333 21.333333 0 0 0-30.165333 30.165333l35.114666 35.157333-35.114666 35.157334a21.333333 21.333333 0 1 0 30.165333 30.165333l35.114667-35.157333 35.157333 35.157333a21.333333 21.333333 0 1 0 30.165333-30.165333z" fill="#030835" p-id="11346"></path></symbol></svg><a onclick="switchNightMode()" class="icon-V hidden" title="切换日间/夜间模式"><svg width="48" height="48" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon"></use></svg></a><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="/lib/runtime.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="洛栀の小窝" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "/img/planeloading.jpg" data-lazy-src="https://q1.qlogo.cn/g?b=qq&amp;nk=2855595515&amp;s=640" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">99</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">405</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://check.luozhinet.com/"><i class="fa-fw fas fa-chart-simple"></i><span> 网站监控</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://server.luozhinet.com/"><i class="fa-fw fas fa-atom-simple"></i><span> 评论后台</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/l.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">洛栀の小窝</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://check.luozhinet.com/"><i class="fa-fw fas fa-chart-simple"></i><span> 网站监控</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://server.luozhinet.com/"><i class="fa-fw fas fa-atom-simple"></i><span> 评论后台</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">云服务器部署前后端分离项目（若依）详细教程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-11T03:37:00.000Z" title="发表于 2022-05-11 11:37:00">2022-05-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-18T15:05:28.233Z" title="更新于 2022-05-18 23:05:28">2022-05-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/">技术教程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="leancloud_visitors" id="/posts/93f4c35cf675/" data-flag-title="云服务器部署前后端分离项目（若依）详细教程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span class="leancloud-visitors-count"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/posts/93f4c35cf675/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/posts/93f4c35cf675/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>镜像下载、域名解析、时间同步请点击 <a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/?utm_content=g_1000303593">阿里云开源镜像站</a></p>
+<p>第一次在Linux云服务器上部署前后端分离项目，查了很多资料和视频，踩了许多坑。成功实现部署若依的前后端分离项目后，想记录一下前后端部署的过程，供学习的小伙伴参考。</p>
+<h3 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1.环境准备"></a>1.环境准备</h3><p>一定要在开始前先准备好以下工具和环境（可以上网查找安装的方法），后续还会对其进行修改：</p>
+<ul>
+<li>购买一个云服务器，例如阿里云等等，操作系统为Linux centos7.x</li>
+<li>在云服务器上安装Nodejs（之前的博客有安装方法）</li>
+<li>在云服务器上安装Nginx</li>
+<li>在云服务器上安装jdk1.8+（推荐1.8）</li>
+<li>在云服务器上安装mysqk5.7+（推荐5.7）</li>
+<li>在云服务器上安装redis</li>
+<li>远程连接工具xshell或者finalshell</li>
+</ul>
+<h3 id="2-下载前后端项目"><a href="#2-下载前后端项目" class="headerlink" title="2.下载前后端项目"></a>2.下载前后端项目</h3><p>若依前后端项目地址：<a target="_blank" rel="noopener" href="https://gitee.com/y_project/RuoYi">https://gitee.com/y_project&#x2F;RuoYi</a></p>
+<p>若依前后端项目使用手册地址：<br><a target="_blank" rel="noopener" href="http://doc.ruoyi.vip/ruoyi/">http://doc.ruoyi.vip/ruoyi/</a></p>
+<p>进入网址将项目下载或者git clone到本地并解压:</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/79/71b024e82f035281aea142abea8582" alt="file"></p>
+<p>在这个项目中，ruoyi-ui文件夹是前端项目，其余为后端项目，我们接下来需要分开打包部署。</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/f8/22bfb59c30828950b3b7612225fc93" alt="file"></p>
+<h3 id="3-远程连接服务器"><a href="#3-远程连接服务器" class="headerlink" title="3.远程连接服务器"></a>3.远程连接服务器</h3><p>通过xshell或者FinalShell远程连接服务器，连接指令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh user@ip</span><br></pre></td></tr></table></figure>
+
+<p>user为服务器的用户名，一般为root，ip是服务器的ip<br>,默认端口号为22，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@172.12.134.12</span><br></pre></td></tr></table></figure>
+
+<p>如果连接失败可能是服务器没有开启远程连接许可或者端口等等，可以搜寻相关方法解决。</p>
+<h3 id="4-前端部署"><a href="#4-前端部署" class="headerlink" title="4.前端部署"></a>4.前端部署</h3><p>（1）首先将项目中ruoyi-ui这个文件夹上传至服务器，可以用FinalShell的文件管理功能，也可以用服务器管理的上传文件功能，例如宝塔界面里的文件管理：</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/d1/3f87029e847e2ed3341ad4a7da6ee0" alt="file"></p>
+<p>可以专门建一个目录存储它们，例如在根目录下创建了一个project文件夹</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /</span><br><span class="line">mkdir project</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/0b/ef905a84a2d5fb5a7be559cd120221" alt="file"></p>
+<p>（2）依次输入如下命令，进入ruoyi-ui文件夹，并对前端代码进行打包,生成一个dist文件夹，这就是前端代码打包后的文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ruoyi-ui</span><br><span class="line">npm install --unsafe-perm --registry=https://registry.npm.taobao.org</span><br><span class="line">npm run build:prod</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/d5/85fcb4408de7230ecfb3341158680d" alt="file"></p>
+<p>（3）修改nginx的配置文件（也就是nginx.conf），使其前端项目能够被访问，一般nginx会被安装在&#x2F;usr&#x2F;local目录下，因此配置文件路径为&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf 。如果忘记nginx安装在哪里了，可以用如下命令找到它：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -name &#x27;nginx.conf&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/75/b62d1e51352ead6686293d4c0e53e6" alt="file"></p>
+<p>用vim编辑器打开nginx.conf，修改配置。修改的几个地方，最好图中的信息都一样，红色框框圈出来的是容易忽略的地方如下：</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/17/fc82a57bbb01e4356a754246b99a72" alt="file"></p>
+<p>1、 修改为root用户</p>
+<p>2、修改监听listen的端口号为9000，这个端口号取决于自己想从几号端口访问前端页面，后续也别忘了在防火墙中开启这个端口，不然无法访问；server_name为你的服务器ip，如果你有域名且配置解析好了，也可以再在此添域名</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/c6/0206ba74cc8d574f4cebe2c206b868" alt="file"></p>
+<p>3、找到这些内容并将root 后跟的路径修改为刚才前端代码打包的dist文件夹的路径，保存后退出。如果仍不清楚改哪里，可以翻倒博客最后面的部分，有两张nginx.conf的整体示意图。</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/14/f56e5445e6941a8a8438f0fa1ff5ce" alt="file"></p>
+<p>4、由于上述前端使用的是9000端口（也可以换为你自己想要的端口，例如80端口），因此要在防火墙中也打开这个端口，外界才可以访问。于此同时，后端也需要一个8080端口，因此也要将其打开，后续部署后端服务要用到。注意有时候可能你想用的端口已经被其他进程占用，可以尝试找到该进程并将其kill掉或者重新开另一个端口号，具体方法不在此赘述，可上网查询。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=9000/tcp --permanent</span><br><span class="line">firewall-cmd --zone=public --add-port=8080/tcp --permanent</span><br></pre></td></tr></table></figure>
+
+<p>我用的是阿里云的轻量应用型服务器，因此还需要检查以下宝塔界面的“安全”里面是否开启该端口，以及阿里云服务器工作台里的“安全”-&gt;“防火墙”中的端口，如果没有开启，则需要在这里手动开启。此外阿里云的ECS云服务器需要为该端口号添加安全组规则。</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/8c/28c948b58fbc2fe13d2fca10cea319" alt="file"></p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/3a/18eab40e9025437e7086ac80dc12a5" alt="file"></p>
+<p>5、端口配置好了后，每次修改了nginx的配置文件后一定要重新启动nginx，使新配置生效。如果重启失败，则先找到nginx的进程，然后将其kill掉，再重启nginx：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">如果已经将nginx配置到全局的环境变量中，就可以直接运行这个命令重启nginx</span><br><span class="line">nginx -s reload</span><br><span class="line">如果没有将其配置到全局的环境变量中，则需要进入安装的nginx/sbin/目录中，用如下命令：</span><br><span class="line">./nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">查看进程号: ps -ef|grep nginx</span><br><span class="line">杀死进程：kill -term xxxx/ kill -int xxxx</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/6c/12740796b54196f9d6c5d8d173b71b" alt="file"></p>
+<p>6、浏览器输入“ip:9000“，例如：198.172.1.1:9000，如果出现出现如下画面，则表示前端启动成功。否则则需要仔细检查两个地方，一个是nginx的配置信息，一个是端口是否真的被完全打开：</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/c9/782ba2b4a0fc9870874e1f9463e2d8" alt="file"></p>
+<h3 id="5-后端准备"><a href="#5-后端准备" class="headerlink" title="5.后端准备"></a>5.后端准备</h3><p>（1）配置服务器上的mysql数据库，使mysql数据库可以被远程访问。具体教程可以看<a target="_blank" rel="noopener" href="https://blog.csdn.net/VariatioZbw/article/details/105823337">https://blog.csdn.net/VariatioZbw/article/details/105823337</a><br>开启后可以在服务器上远程连接一下看是否成功：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql -h 198.172.1.1 -P 3306 -u root -p123</span><br><span class="line">h表示host，服务器ip地址</span><br><span class="line">P表示端口号，一般mysql端口号为3306</span><br><span class="line">u表示用户名，建议设为root用户</span><br><span class="line">p表示密码，123为root这个用户的密码，p后面要紧跟密码，不要空格</span><br></pre></td></tr></table></figure>
+
+<p>（2）redis数据库也要配置好，例如它的端口要被打开，设置密码，具体方法可以参考网上的方法。</p>
+<p>（3）进入mysql数据库，建一个名为ry-vue的数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">数据库名称中有‘-’符号，需要用反引号`,是键盘上tab键上面一个键的符号</span><br><span class="line">create database `ry-vue`;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/11/1710ed724d1ecb22f8be48cae90aea" alt="file"></p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/7c/e87d254cd1a4a9045e8225a7ac9e7f" alt="file"></p>
+<p>将之前下载好的项目文件夹中的sql文件夹里的两个数据表上传到服务器中，我们可以继续将这两个文件放在之前在服务器根目录下创建好的project目录里面</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/d4/72c2d64a5f2507c9762e677cbc8b31" alt="file"></p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/30/7f1a6fda9ff87eead20d50941d72e6" alt="file"></p>
+<p>然后登录进入mysql数据库，使用刚才创建ry-vue数据库，导入两个数据表进入ry-vue数据库中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use ry-vue;</span><br><span class="line">source /project/quartz.sql;</span><br><span class="line">source /project/ry_20210908.sql;</span><br></pre></td></tr></table></figure>
+
+<p>(4) 修改项目中ruoyi-admin中的三个文件，如下：</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/96/9b3b4694103eeb9e21ecaeb6518984" alt="file"></p>
+<p>在application.yml中，修改redis的信息，分别为host地址（你的服务器ip），port端口号（你的redis开放的端口号，一般为6379），password密码（你的redis的密码）。</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/e0/86a31a0c314646754fedff622971b3" alt="file"></p>
+<p>在application-druid.yml中，修改mysql的信息，url的中间填写访问mysql的 ip:端口号，例如：198.172.1.1:3306；username填你的mysql用户名；password填你的mysql密码。</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/54/cd62803c6c4649f5ab97cea2302bb2" alt="file"></p>
+<p>在logback.xml中，找到日志存放路径，value修改为你存放日志的目录，可以在之前创建的project文件夹中建一个logs文件夹，则填为value&#x3D;”&#x2F;project&#x2F;logs“</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/ec/230c7f43f26bfb040e6a27fee0a0ca" alt="file"></p>
+<p>自此，该修改的已经修改完了。</p>
+<p>（5）尝试运行后端项目</p>
+<p>可以通过InteliJ IDEA或者eclipse软件来运行这个java后端项目，前提是你运行的本机上应该也具备一定的环境，jdk&gt;&#x3D;1.8，以及本地8080端口（用于后端）已开启且未被占用。其他的例如mysql，redis可以直接通过服务器ip+端口号远程访问，不需要在本机上配置。</p>
+<p>出现如下表示启动成功，可以开始打包后端代码。如果未成功也不用灰心，检查报错，是否关于mysql，redis的（如果是，则可能是这两个没有在你的服务器上配置好或者刚才修改的信息出错了，例如账号，密码不对，或者远程连接未成功，导致本机无法远程访问等等），如果是关于8080端口，可能是由于你本机有程序以及占用了8080端口，这个基本上就不是什么问题，部署到服务器后只要服务器8080端口可用就行。接下来可以直接打包代码。</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/79/6fb71ba4db3f5e2e5cc0aee49fee9b" alt="file"></p>
+<p>（6）打包后端代码jar包</p>
+<p>熟练使用java的人可以直接通过InteliJ IDEA或者eclipse软件打jar包。不熟悉的有第二种方法，是若依提供的。进入下载的项目文件夹中的bin目录下，直接双击执行package.bat，它会直接在项目中生成target文件夹，里面包含以及打包好的jar包。我们要使用的是ruoyi-admin文件夹下的target里的jar包。运行package.bat需要marven环境&gt;&#x3D;3.0，自行参考网上方法按照。如下图操作顺序：</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/2e/ccd63d3c237aabe0816623e224b393" alt="file"></p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/fb/ed850b5b8b6a236c3193fec866321a" alt="file"></p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/52/085fbebdd1b3e3de7ee454da353e57" alt="file"></p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/2c/4e7aca4df15e4cf4676ecb53ac22cb" alt="file"></p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/d6/a59328b9061dfe55c67dc86b4b5de1" alt="file"></p>
+<p>将这个ruoyi-admin.jar包上传至服务器，可继续存于刚才建的project目录中。</p>
+<h3 id="6-后端部署"><a href="#6-后端部署" class="headerlink" title="6.后端部署"></a>6.后端部署</h3><p>（1）再此修改nginx配置文件（nginx.conf），添加后端信息。proxy_pass中空余的部分填服务器ip地址，别忘了上面是location &#x2F;prod-api&#x2F;。修改后别忘了重启nginx服务，用上面刚才提到的命令。</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/0d/b6df5af0776def1b85ba721b998c75" alt="file"></p>
+<p>修改未prod-api是由于前端发送请求的时候就是通过这个接口来发送的</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/bf/aa2bee4f0f0e9acc1975eb250a5b7d" alt="file"></p>
+<p>nginx配置文件nginx.conf的整体示意图（包括前端和后端配置修改的所有地方）：</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/d9/1c736342ab7e3087e5b502207650fe" alt="file"></p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/8f/265bca0229a2a76dc46e0850febe50" alt="file"></p>
+<p>（2）远程连接服务器，进入project目录，后台启动jar包：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup java -jar ruoyi-admin.jar &amp;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-成功部署效果"><a href="#7-成功部署效果" class="headerlink" title="7.成功部署效果"></a>7.成功部署效果</h3><p>用浏览器访问”ip:前端端口号“：</p>
+<p>输入验证码登录后成功进入后台：</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/d0/8e51a018a721ceb0bbebddbd7f70a1" alt="file"></p>
+<p>本文转自：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44248258/article/details/124213606">https://blog.csdn.net/weixin_44248258&#x2F;article&#x2F;details&#x2F;124213606</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://luozhinet.com">洛栀</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://luozhinet.com/posts/93f4c35cf675/">https://luozhinet.com/posts/93f4c35cf675/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://luozhinet.com" target="_blank">洛栀の小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%93%8D%E4%BD%9C/">操作</a><a class="post-meta__tags" href="/tags/%E5%AF%86%E7%A0%81/">密码</a><a class="post-meta__tags" href="/tags/%E6%9C%8D%E5%8A%A1/">服务</a><a class="post-meta__tags" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a><a class="post-meta__tags" href="/tags/%E8%B4%A6%E5%8F%B7/">账号</a><a class="post-meta__tags" href="/tags/%E6%96%B9%E6%B3%95/">方法</a><a class="post-meta__tags" href="/tags/%E6%96%87%E4%BB%B6/">文件</a><a class="post-meta__tags" href="/tags/run/">run</a><a class="post-meta__tags" href="/tags/%E7%9B%AE%E5%BD%95/">目录</a><a class="post-meta__tags" href="/tags/%E5%9F%9F%E5%90%8D/">域名</a><a class="post-meta__tags" href="/tags/%E9%83%A8%E7%BD%B2/">部署</a><a class="post-meta__tags" href="/tags/%E6%8C%87%E4%BB%A4/">指令</a><a class="post-meta__tags" href="/tags/%E9%95%9C%E5%83%8F/">镜像</a><a class="post-meta__tags" href="/tags/nginx/">nginx</a><a class="post-meta__tags" href="/tags/%E4%BF%AE%E6%94%B9/">修改</a><a class="post-meta__tags" href="/tags/%E5%9C%B0%E5%9D%80/">地址</a><a class="post-meta__tags" href="/tags/int/">int</a><a class="post-meta__tags" href="/tags/java/">java</a><a class="post-meta__tags" href="/tags/public/">public</a><a class="post-meta__tags" href="/tags/username/">username</a><a class="post-meta__tags" href="/tags/%E6%97%B6%E9%97%B4/">时间</a><a class="post-meta__tags" href="/tags/%E5%91%BD%E4%BB%A4/">命令</a><a class="post-meta__tags" href="/tags/user/">user</a><a class="post-meta__tags" href="/tags/%E8%A7%86%E9%A2%91/">视频</a><a class="post-meta__tags" href="/tags/mysql/">mysql</a><a class="post-meta__tags" href="/tags/%E6%97%A5%E5%BF%97/">日志</a><a class="post-meta__tags" href="/tags/sql/">sql</a><a class="post-meta__tags" href="/tags/%E7%AB%AF%E5%8F%A3/">端口</a></div><div class="post_share"><div class="social-share" data-image="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/l.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://jsdelivr.luozhinet.com/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://jsdelivr.luozhinet.com/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/qqpay.png" target="_blank"><img class="post-qr-code-img" src= "/img/planeloading.jpg" data-lazy-src="/img/qqpay.png" alt="qqpay"/></a><div class="post-qr-code-desc">qqpay</div></li><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src= "/img/planeloading.jpg" data-lazy-src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.png" target="_blank"><img class="post-qr-code-img" src= "/img/planeloading.jpg" data-lazy-src="/img/alipay.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/a76afeaaf8b6/"><img class="prev-cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/u.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Web安全学习笔记 XSS上</div></div></a></div><div class="next-post pull-right"><a href="/posts/b43e4543fee2/"><img class="next-cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/i.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">创建型模式之门—简单工厂</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/304408dfc52f/" title="5分钟站点生成神器——Docusaurus"><img class="cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/k.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-11</div><div class="title">5分钟站点生成神器——Docusaurus</div></div></a></div><div><a href="/posts/4233dd1ac4c0/" title="超详细：如何在windous系统下使用wsl虚拟机安装Ubuntu"><img class="cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/p.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-12</div><div class="title">超详细：如何在windous系统下使用wsl虚拟机安装Ubuntu</div></div></a></div><div><a href="/posts/f52177d9e0d7/" title="Docker"><img class="cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/r.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-12</div><div class="title">Docker</div></div></a></div><div><a href="/posts/9792de8b38a6/" title="Linux 实用命令"><img class="cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/r.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-12</div><div class="title">Linux 实用命令</div></div></a></div><div><a href="/posts/14d237c26b5e/" title="使用EasyExcel导入导出Excel"><img class="cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/t.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-11</div><div class="title">使用EasyExcel导入导出Excel</div></div></a></div><div><a href="/posts/f691d1b683d4/" title="Python编程之定时任务(crontab)详解"><img class="cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/w.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-11</div><div class="title">Python编程之定时任务(crontab)详解</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-number">1.</span> <span class="toc-text">1.环境准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%8B%E8%BD%BD%E5%89%8D%E5%90%8E%E7%AB%AF%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.</span> <span class="toc-text">2.下载前后端项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">3.远程连接服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%89%8D%E7%AB%AF%E9%83%A8%E7%BD%B2"><span class="toc-number">4.</span> <span class="toc-text">4.前端部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%90%8E%E7%AB%AF%E5%87%86%E5%A4%87"><span class="toc-number">5.</span> <span class="toc-text">5.后端准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%90%8E%E7%AB%AF%E9%83%A8%E7%BD%B2"><span class="toc-number">6.</span> <span class="toc-text">6.后端部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E6%88%90%E5%8A%9F%E9%83%A8%E7%BD%B2%E6%95%88%E6%9E%9C"><span class="toc-number">7.</span> <span class="toc-text">7.成功部署效果</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By 洛栀</div><div class="framework-info"><span>网站地图 </span><a href="https://luozhinet.com/atom.xml">Atom</a><span class="footer-separator">|</span><span>托管 </span><a target="_blank" rel="noopener" href="https://github.com/luozhixiaowo">github</a></div><div class="footer_custom_text">Hi, welcome to my <a href="https://luozhinet.com/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://jsdelivr.luozhinet.com/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://jsdelivr.luozhinet.com/npm/instant.page@5/instantpage.min.js" type="module"></script><script src="https://jsdelivr.luozhinet.com/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://jsdelivr.luozhinet.com/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://jsdelivr.luozhinet.com/npm/pangu@4/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://jsdelivr.luozhinet.com/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oftbERdAPRh3XBvrndKO45QB-MdYXbMMI',
+      appKey: 'oyovhEFbGgFMhGBKg7tCxG56',
+      master: '11f18018abc6766ebba9eea284274bb0',
+      friends: 'e4971cbb8c59b7440eacb823c2893341',
+      placeholder: '请开始你的表演，请文明发言哦🍃\n昵称框建议使用QQ，自动获取头像与昵称🌿',
+      avatar: 'mp',
+      bg: 'img/comment.gif',
+      recordIP: 'true',
+      enableQQ: 'true',
+      serverURLs: 'https://oftberda.api.lncldglobal.com/',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://jsdelivr.luozhinet.com/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7418767218" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><script type="text/javascript" src="http://43.142.176.17/visitorip.php"></script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script defer src="/js/sun_moon.js"></script><script defer src="/js/beidu.js"></script><script defer src="/js/custom.js"></script><script> let backimg =["url(/img/background1.jpg)","url(/img/background2.jpg)","url(/img/background3.jpg)","url(/img/background4.jpg)","url(/img/background5.jpg)","url(/img/background6.jpg)","url(/img/background7.jpg)"];let index =Math.ceil(Math.random() * (backimg.length-1))-1;document.getElementById("web_bg").style.backgroundImage = backimg[index]</script><canvas class="fireworks" mobile="true"></canvas><script src="https://jsdelivr.luozhinet.com/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://jsdelivr.luozhinet.com/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://jsdelivr.luozhinet.com/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="//code.tidio.co/bjdwqvek4tmoarfd0is5fub5pyauuabz.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><link rel="stylesheet" href="https://jsdelivr.luozhinet.com/npm/aplayer@1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://jsdelivr.luozhinet.com/npm/aplayer@1/dist/APlayer.min.js"></script><script src="https://jsdelivr.luozhinet.com/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://jsdelivr.luozhinet.com/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="app-refresh" id="app-refresh" style="position: fixed;top: -2.2rem;left: 0;right: 0;z-index: 99999;padding: 0 1rem;font-size: 15px;height: 2.2rem;transition: all 0.3s ease;"><div class="app-refresh-wrap" style=" display: flex;color: #fff;height: 100%;align-items: center;justify-content: center;"><label>✨ 小窝更新啦！ 👉</label><a href="javascript:void(0)" onclick="location.reload(true)"><span style="color: #fff;text-decoration: underline;cursor: pointer;">🍭查看新品🍬</span></a></div></div><script>if ('serviceWorker' in navigator) {
+if (navigator.serviceWorker.controller) {
+navigator.serviceWorker.addEventListener('controllerchange', function() {
+showNotification()
+})
+}
+window.addEventListener('load', function() {
+navigator.serviceWorker.register('/sw.js')
+})
+}
+function showNotification() {
+if (GLOBAL_CONFIG.Snackbar) {
+var snackbarBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+GLOBAL_CONFIG.Snackbar.bgLight :
+GLOBAL_CONFIG.Snackbar.bgDark
+var snackbarPos = GLOBAL_CONFIG.Snackbar.position
+Snackbar.show({
+text: '✨ 小窝更新啦！ 👉',
+backgroundColor: snackbarBg,
+duration: 500000,
+pos: snackbarPos,
+actionText: '🍭查看新品🍬',
+actionTextColor: '#fff',
+onActionClick: function(e) {
+location.reload()
+},
+})
+} else {
+var showBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+'#49b1f5' :
+'#1f1f1f'
+var cssText = `top: 0; background: ${showBg};`
+document.getElementById('app-refresh').style.cssText = cssText
+}
+}</script></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://jsdelivr.luozhinet.com/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?luozhixiaowo";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="luozhixiaowo";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="height:100%;display: flex;align-items: center;justify-content: center;"><svg style="height:50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:248px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/Zfour/Butterfly-clock/clock/images/weather/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用双线部署，联通线路托管于Vercel" title=""><img src= "/img/planeloading.jpg" data-lazy-src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://dashboard.4everland.org/" style="margin-inline:5px" data-title="本站采用双线部署，默认线路托管于4everland" title=""><img src= "/img/planeloading.jpg" data-lazy-src="https://img.shields.io/badge/Hosted-4everland-0cedbe?style=flat&amp;logo=4everland" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src= "/img/planeloading.jpg" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="/lib/runtime.js"></script><!-- hexo injector body_end end --><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
