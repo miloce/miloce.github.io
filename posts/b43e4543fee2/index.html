@@ -1,0 +1,461 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>创建型模式之门—简单工厂 | 洛栀の小窝</title><meta name="keywords" content="函数,方法,创建,对象,修改,new,string,public,公司,return,void,car,工厂,cartype"><meta name="author" content="洛栀"><meta name="copyright" content="洛栀"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.“new”有什么不对劲？在我们没有接触到工厂模式（简单工厂、工厂方法模式、抽象工厂模式）之前，我们实例化对象唯一的方法就是通过“new”关键字来完成。但是，大量的使用“new”关键字来实例化对象会违背一些设计原则，因为代码与具体的类型绑在一起，从而导致过多的依赖于细节而非抽象，这样代码就很难适应需求变化。 在面向对象编程中我们大量的使用到了继承、多态的特性，但是在使用这些特性时往往会延申出一些">
+<meta property="og:type" content="article">
+<meta property="og:title" content="创建型模式之门—简单工厂">
+<meta property="og:url" content="https://luozhinet.com/posts/b43e4543fee2/index.html">
+<meta property="og:site_name" content="洛栀の小窝">
+<meta property="og:description" content="1.“new”有什么不对劲？在我们没有接触到工厂模式（简单工厂、工厂方法模式、抽象工厂模式）之前，我们实例化对象唯一的方法就是通过“new”关键字来完成。但是，大量的使用“new”关键字来实例化对象会违背一些设计原则，因为代码与具体的类型绑在一起，从而导致过多的依赖于细节而非抽象，这样代码就很难适应需求变化。 在面向对象编程中我们大量的使用到了继承、多态的特性，但是在使用这些特性时往往会延申出一些">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/x.png">
+<meta property="article:published_time" content="2022-05-11T03:37:00.000Z">
+<meta property="article:modified_time" content="2022-05-18T15:05:28.263Z">
+<meta property="article:author" content="洛栀">
+<meta property="article:tag" content="函数">
+<meta property="article:tag" content="方法">
+<meta property="article:tag" content="创建">
+<meta property="article:tag" content="对象">
+<meta property="article:tag" content="修改">
+<meta property="article:tag" content="new">
+<meta property="article:tag" content="string">
+<meta property="article:tag" content="public">
+<meta property="article:tag" content="公司">
+<meta property="article:tag" content="return">
+<meta property="article:tag" content="void">
+<meta property="article:tag" content="car">
+<meta property="article:tag" content="工厂">
+<meta property="article:tag" content="cartype">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/x.png"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://luozhinet.com/posts/b43e4543fee2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="baidu-site-verification" content="txqQxPhST9jFL0K2"/><link rel="manifest" href="/manifest.json"/><meta name="msapplication-TileColor" content="#212121"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/favicon-16x16.png"/><link rel="mask-icon" href="/img/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://jsdelivr.luozhinet.com/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://jsdelivr.luozhinet.com/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://jsdelivr.luozhinet.com/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({
+  google_ad_client: 'ca-pub-7237954999881644',
+  enable_page_level_ads: 'true'
+});</script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8a61754693ac9e7e91cd8cfc00cf88e5";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":20,"languages":{"author":"作者: 洛栀","link":"链接: ","source":"来源: 洛栀の小窝","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://jsdelivr.luozhinet.com/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://jsdelivr.luozhinet.com/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '创建型模式之门—简单工厂',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-18 23:05:28'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta http-equiv='content-language' content='zh-cn'><meta name='description' content='Luozhinet.com - 洛栀的学习分享博客。'><link rel="stylesheet" href="/css/ycmusic.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/test.css"><link rel="stylesheet" href="/css/custom.css"><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-sun" viewBox="0 0 1024 1024"><path d="M960 512l-128 128v192h-192l-128 128-128-128H192v-192l-128-128 128-128V192h192l128-128 128 128h192v192z" fill="#FFD878" p-id="8420"></path><path d="M736 512a224 224 0 1 0-448 0 224 224 0 1 0 448 0z" fill="#FFE4A9" p-id="8421"></path><path d="M512 109.248L626.752 224H800v173.248L914.752 512 800 626.752V800h-173.248L512 914.752 397.248 800H224v-173.248L109.248 512 224 397.248V224h173.248L512 109.248M512 64l-128 128H192v192l-128 128 128 128v192h192l128 128 128-128h192v-192l128-128-128-128V192h-192l-128-128z" fill="#4D5152" p-id="8422"></path><path d="M512 320c105.888 0 192 86.112 192 192s-86.112 192-192 192-192-86.112-192-192 86.112-192 192-192m0-32a224 224 0 1 0 0 448 224 224 0 0 0 0-448z" fill="#4D5152" p-id="8423"></path></symbol><symbol id="icon-moon" viewBox="0 0 1024 1024"><path d="M611.370667 167.082667a445.013333 445.013333 0 0 1-38.4 161.834666 477.824 477.824 0 0 1-244.736 244.394667 445.141333 445.141333 0 0 1-161.109334 38.058667 85.077333 85.077333 0 0 0-65.066666 135.722666A462.08 462.08 0 1 0 747.093333 102.058667a85.077333 85.077333 0 0 0-135.722666 65.024z" fill="#FFB531" p-id="11345"></path><path d="M329.728 274.133333l35.157333-35.157333a21.333333 21.333333 0 1 0-30.165333-30.165333l-35.157333 35.157333-35.114667-35.157333a21.333333 21.333333 0 0 0-30.165333 30.165333l35.114666 35.157333-35.114666 35.157334a21.333333 21.333333 0 1 0 30.165333 30.165333l35.114667-35.157333 35.157333 35.157333a21.333333 21.333333 0 1 0 30.165333-30.165333z" fill="#030835" p-id="11346"></path></symbol></svg><a onclick="switchNightMode()" class="icon-V hidden" title="切换日间/夜间模式"><svg width="48" height="48" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon"></use></svg></a><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.css"><link rel="stylesheet" href="/lib/runtime.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/lib/swiper.min.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="洛栀の小窝" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "/img/planeloading.jpg" data-lazy-src="https://q1.qlogo.cn/g?b=qq&amp;nk=2855595515&amp;s=640" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">99</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">405</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://check.luozhinet.com/"><i class="fa-fw fas fa-chart-simple"></i><span> 网站监控</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://server.luozhinet.com/"><i class="fa-fw fas fa-atom-simple"></i><span> 评论后台</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/x.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">洛栀の小窝</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://check.luozhinet.com/"><i class="fa-fw fas fa-chart-simple"></i><span> 网站监控</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://server.luozhinet.com/"><i class="fa-fw fas fa-atom-simple"></i><span> 评论后台</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">创建型模式之门—简单工厂</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-11T03:37:00.000Z" title="发表于 2022-05-11 11:37:00">2022-05-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-18T15:05:28.263Z" title="更新于 2022-05-18 23:05:28">2022-05-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/">技术教程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="leancloud_visitors" id="/posts/b43e4543fee2/" data-flag-title="创建型模式之门—简单工厂"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span class="leancloud-visitors-count"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/posts/b43e4543fee2/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count" data-xid="/posts/b43e4543fee2/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h4 id="1-“new”有什么不对劲？"><a href="#1-“new”有什么不对劲？" class="headerlink" title="1.“new”有什么不对劲？"></a>1.“new”有什么不对劲？</h4><p>在我们没有接触到工厂模式（简单工厂、工厂方法模式、抽象工厂模式）之前，我们实例化对象唯一的方法就是通过“new”关键字来完成。但是，大量的使用“new”关键字来实例化对象会违背一些设计原则，因为代码与具体的类型绑在一起，从而导致<strong>过多的依赖于细节而非抽象</strong>，这样代码就很难适应需求变化。</p>
+<p>在面向对象编程中我们大量的使用到了继承、多态的特性，但是在使用这些特性时往往会延申出一些新的问题。例如在一个有继承模块的代码当中，如果子类发生新增或删除，这就不得不去使用类的“调用层”做出相应的修改，因为你new的都是具体的类型，当下层发生变动就不得不去上层进行修改。对于这样的场景来说，实际上它也<strong>违背了设计模式原则之一的“开闭原则”</strong>，即对扩展开放，对修改关闭，这会不利于程序的稳定和扩展。</p>
+<h4 id="2-举例反映问题"><a href="#2-举例反映问题" class="headerlink" title="2.举例反映问题"></a>2.举例反映问题</h4><p>接下来将通过代码案例来反映出，在一个使用继承模块的代码当中，大量使用“new”关键字，在设计层面会带来什么样的缺陷。我们以一个汽车销售系统作为背景，其中汽车类型UML图如下：</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/d9/c6e46f55ce9d01d944c541326a9ead"></p>
+<p>其中有一个卖车的方法使用到了“new”来实例化车型对象，相应的代码如下：</p>
+<p> 1     &#x2F;&#x2F;卖车方法<br> 2     public void SellCar(string carType) 3     {<br> 4         Car car;<br> 5         if(carType&#x3D;&#x3D;”宝马 X3”)<br> 6         {<br> 7             car&#x3D;new Bmwx3(); 8         }<br> 9         else if(carType&#x3D;&#x3D;”吉普牧马人”)<br>10 {<br>11             car&#x3D;new Jeeper();<br>12 }<br>13         else if(carType&#x3D;&#x3D;”奔驰G63”)<br>14 {<br>15             car&#x3D;new BenzG63();<br>16 }<br>17<br>18         TestDrive(car);&#x2F;&#x2F;试驾<br>19         Collection(car);&#x2F;&#x2F;收款<br>20         License(car);&#x2F;&#x2F;上牌<br>21     }</p>
+<p>在实际的生活当中我们应该都知道，4s店卖的车型不可能是一层不变的，而是经常性的会发生产品的更新换代，所以会不断对车型做出新增或删减。如果汽车销售系统中使用了以上的代码，这就意味这每次车型模块的调整都要同步到“卖车方法”中，并且随着公司规模的增大所卖的车型会增多，在新增车型后代码中出现大量的else if，这会显得非常臃肿，在删除时还可能误删。</p>
+<p>即便你说你的“汽车销售系统只卖一种车”(也就是只new一种对象类型)，你可能还是会在使用构造函数创建对象时要加入参数的情形，这些变化都会促使你因为下层模块的调整而影响到上层模块。</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/97/95e97ddfc58864375599bcc57e3131"></p>
+<h4 id="3-改善方法"><a href="#3-改善方法" class="headerlink" title="3.改善方法"></a>3.改善方法</h4><p>1.编程当中任何需求或代码都是无法避免的，而我们能做到就是运用设计模式的思想，能够将程序更好的去适应变化。其中的一个思想就是：“找出变化的部分，把它们从不变的部分分离出来”。以上面的“汽车销售系统”中的卖车方法为例，分析变化如下：</p>
+<p><img src= "/img/planeloading.jpg" data-lazy-src="https://static.luozhinet.com/a6/9d4eacf23ac714a0a6cb2ca3853760"></p>
+<p>2.然后，我们将变化的部分单独的封装到一个类的静态方法中，该类的静态方法将专门用于创建具体的汽车对象，代码如下：</p>
+<p> 1 public class CarFactory 2 {<br> 3     public static Car CreateCarInstance(string type) 4     {<br> 5         Car car&#x3D;null;<br> 6         if(carType&#x3D;&#x3D;”宝马 X3”)<br> 7         {<br> 8             car&#x3D;new Bmwx3(); 9 }<br>10         else if(carType&#x3D;&#x3D;”吉普牧马人”)<br>11 {<br>12             car&#x3D;new Jeeper();<br>13 }<br>14         else if(carType&#x3D;&#x3D;”奔驰G63”)<br>15 {<br>16             car&#x3D;new BenzG63();<br>17 }<br>18         return car;<br>19 }<br>20 }</p>
+<p>3.在抽离并封装变化后，我们将对“卖车方法”中的实例化车对象部分进行改造。</p>
+<p>1   public void SellCar(string carType)<br>2 {<br>3         Car car&#x3D;CarFactory.CreateCarInstance(carType);<br>4<br>5         TestDrive(car);&#x2F;&#x2F;试驾<br>6         Collection(car);&#x2F;&#x2F;收款<br>7         License(car);&#x2F;&#x2F;上牌<br>8     }</p>
+<p>根据以上的三个步骤，其实一个简单工厂创建对象的方式就已经形成了，<strong>其中专门创建对象的Factory类我们称之为工厂，它实例化的对象我们称之为产品。</strong>此时我们创建对象的方式不在是”new”，而是通过一个静态方法。</p>
+<p>对于上层模块(卖车方法)，在也不用担心下层模块(汽车车型)的变化而牵连到自身，它只有根据指定的类型创建对应的车型对象即可，并且上层模块(卖车方法)也不用在承担对象创建的细节，减少大量代码和复杂度。</p>
+<p>另外简单工厂也解决了对象创建复用的问题，例如4s店的汽车保险系统、汽车维修系统等等都会用到实例化车型对象。这样的话，如果车型发生修改我们只用调整简单工厂类即可而其他(调用层)都不必受到改动的牵连。</p>
+<h4 id="4-定义"><a href="#4-定义" class="headerlink" title="4.定义"></a>4.定义</h4><p>简单工厂又称之为静态工厂方法，它属于创建型模式中的一种简单运用。</p>
+<p>严格来讲它其实并不属于一种设计模式，反而比较像我们在遵循设计模式原则时的一种<strong>编程习惯</strong>。你要你能够在编程中遵循并灵活运用：迪米特法则（最少知道原则）、依赖倒置（依赖抽象，不依赖细节）、里氏替换（子类替代父类）这些原则，其实就会无形当中使用简单工厂来实现对象的实例化，而并非只使用“new”。</p>
+<h4 id="5-短板"><a href="#5-短板" class="headerlink" title="5.短板"></a>5.短板</h4><p>使用简单工厂实例化对象虽然解决了一些问题，但是有同时存在一些新的问题。因为我们的工厂本身就是一个具体的类型，这违反了面向接口(抽象)编程的思想。</p>
+<p>还是以汽车销售作为背景来说，假如你依赖的这个A工厂因为疫情出现停产，又或者因为你要扩张你的车型使用新的工厂，那么此时你依赖的A工厂(具体的类)就很难做出<strong>扩展</strong>，而只能因为你换了工厂导致上层模块都要跟着调整。所以，后续诞生出的“工厂方法模式”和“抽象工厂模式”，就是在不断解决因为变化而带来各种的问题。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://luozhinet.com">洛栀</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://luozhinet.com/posts/b43e4543fee2/">https://luozhinet.com/posts/b43e4543fee2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://luozhinet.com" target="_blank">洛栀の小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%87%BD%E6%95%B0/">函数</a><a class="post-meta__tags" href="/tags/%E6%96%B9%E6%B3%95/">方法</a><a class="post-meta__tags" href="/tags/%E5%88%9B%E5%BB%BA/">创建</a><a class="post-meta__tags" href="/tags/%E5%AF%B9%E8%B1%A1/">对象</a><a class="post-meta__tags" href="/tags/%E4%BF%AE%E6%94%B9/">修改</a><a class="post-meta__tags" href="/tags/new/">new</a><a class="post-meta__tags" href="/tags/string/">string</a><a class="post-meta__tags" href="/tags/public/">public</a><a class="post-meta__tags" href="/tags/%E5%85%AC%E5%8F%B8/">公司</a><a class="post-meta__tags" href="/tags/return/">return</a><a class="post-meta__tags" href="/tags/void/">void</a><a class="post-meta__tags" href="/tags/car/">car</a><a class="post-meta__tags" href="/tags/%E5%B7%A5%E5%8E%82/">工厂</a><a class="post-meta__tags" href="/tags/cartype/">cartype</a></div><div class="post_share"><div class="social-share" data-image="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/x.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://jsdelivr.luozhinet.com/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://jsdelivr.luozhinet.com/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/qqpay.png" target="_blank"><img class="post-qr-code-img" src= "/img/planeloading.jpg" data-lazy-src="/img/qqpay.png" alt="qqpay"/></a><div class="post-qr-code-desc">qqpay</div></li><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src= "/img/planeloading.jpg" data-lazy-src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.png" target="_blank"><img class="post-qr-code-img" src= "/img/planeloading.jpg" data-lazy-src="/img/alipay.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/93f4c35cf675/"><img class="prev-cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/g.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">云服务器部署前后端分离项目（若依）详细教程</div></div></a></div><div class="next-post pull-right"><a href="/posts/f691d1b683d4/"><img class="next-cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/d.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Python编程之定时任务(crontab)详解</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/14d237c26b5e/" title="使用EasyExcel导入导出Excel"><img class="cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/i.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-11</div><div class="title">使用EasyExcel导入导出Excel</div></div></a></div><div><a href="/posts/84e281d53601/" title="网页 frame 与多窗口处理"><img class="cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/i.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-11</div><div class="title">网页 frame 与多窗口处理</div></div></a></div><div><a href="/posts/8852c858e001/" title="串池StringTable与s.intern()方法 、 验证s.intern()方法（基于jdk1.8）（附1.6对比）"><img class="cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/w.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-11</div><div class="title">串池StringTable与s.intern()方法 、 验证s.intern()方法（基于jdk1.8）（附1.6对比）</div></div></a></div><div><a href="/posts/5fd7efa9bb02/" title="动态绑定机制"><img class="cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/i.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-11</div><div class="title">动态绑定机制</div></div></a></div><div><a href="/posts/3bb1a894e730/" title="关于Redis的问题探讨：为何存放集合偏向于转String后存放而非直接存"><img class="cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/o.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-11</div><div class="title">关于Redis的问题探讨：为何存放集合偏向于转String后存放而非直接存</div></div></a></div><div><a href="/posts/bdd7aac98dac/" title="Java遇上SPL：架构优势和开发效率，一个不放过"><img class="cover" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/luozhixiaowo/img@main/s.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-12</div><div class="title">Java遇上SPL：架构优势和开发效率，一个不放过</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E2%80%9Cnew%E2%80%9D%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%AF%B9%E5%8A%B2%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">1.“new”有什么不对劲？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%B8%BE%E4%BE%8B%E5%8F%8D%E6%98%A0%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">2.举例反映问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%94%B9%E5%96%84%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">3.改善方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%AE%9A%E4%B9%89"><span class="toc-number">4.</span> <span class="toc-text">4.定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E7%9F%AD%E6%9D%BF"><span class="toc-number">5.</span> <span class="toc-text">5.短板</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By 洛栀</div><div class="framework-info"><span>网站地图 </span><a href="https://luozhinet.com/atom.xml">Atom</a><span class="footer-separator">|</span><span>托管 </span><a target="_blank" rel="noopener" href="https://github.com/luozhixiaowo">github</a></div><div class="footer_custom_text">Hi, welcome to my <a href="https://luozhinet.com/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://jsdelivr.luozhinet.com/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://jsdelivr.luozhinet.com/npm/instant.page@5/instantpage.min.js" type="module"></script><script src="https://jsdelivr.luozhinet.com/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://jsdelivr.luozhinet.com/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://jsdelivr.luozhinet.com/npm/pangu@4/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://jsdelivr.luozhinet.com/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'oftbERdAPRh3XBvrndKO45QB-MdYXbMMI',
+      appKey: 'oyovhEFbGgFMhGBKg7tCxG56',
+      master: '11f18018abc6766ebba9eea284274bb0',
+      friends: 'e4971cbb8c59b7440eacb823c2893341',
+      placeholder: '请开始你的表演，请文明发言哦🍃\n昵称框建议使用QQ，自动获取头像与昵称🌿',
+      avatar: 'mp',
+      bg: 'img/comment.gif',
+      recordIP: 'true',
+      enableQQ: 'true',
+      serverURLs: 'https://oftberda.api.lncldglobal.com/',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: true
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://jsdelivr.luozhinet.com/gh/HCLonely/Valine@latest/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7418767218" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><script type="text/javascript" src="http://43.142.176.17/visitorip.php"></script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script defer src="/js/sun_moon.js"></script><script defer src="/js/beidu.js"></script><script defer src="/js/custom.js"></script><script> let backimg =["url(/img/background1.jpg)","url(/img/background2.jpg)","url(/img/background3.jpg)","url(/img/background4.jpg)","url(/img/background5.jpg)","url(/img/background6.jpg)","url(/img/background7.jpg)"];let index =Math.ceil(Math.random() * (backimg.length-1))-1;document.getElementById("web_bg").style.backgroundImage = backimg[index]</script><canvas class="fireworks" mobile="true"></canvas><script src="https://jsdelivr.luozhinet.com/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://jsdelivr.luozhinet.com/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://jsdelivr.luozhinet.com/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="//code.tidio.co/bjdwqvek4tmoarfd0is5fub5pyauuabz.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><link rel="stylesheet" href="https://jsdelivr.luozhinet.com/npm/aplayer@1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://jsdelivr.luozhinet.com/npm/aplayer@1/dist/APlayer.min.js"></script><script src="https://jsdelivr.luozhinet.com/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://jsdelivr.luozhinet.com/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="app-refresh" id="app-refresh" style="position: fixed;top: -2.2rem;left: 0;right: 0;z-index: 99999;padding: 0 1rem;font-size: 15px;height: 2.2rem;transition: all 0.3s ease;"><div class="app-refresh-wrap" style=" display: flex;color: #fff;height: 100%;align-items: center;justify-content: center;"><label>✨ 小窝更新啦！ 👉</label><a href="javascript:void(0)" onclick="location.reload(true)"><span style="color: #fff;text-decoration: underline;cursor: pointer;">🍭查看新品🍬</span></a></div></div><script>if ('serviceWorker' in navigator) {
+if (navigator.serviceWorker.controller) {
+navigator.serviceWorker.addEventListener('controllerchange', function() {
+showNotification()
+})
+}
+window.addEventListener('load', function() {
+navigator.serviceWorker.register('/sw.js')
+})
+}
+function showNotification() {
+if (GLOBAL_CONFIG.Snackbar) {
+var snackbarBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+GLOBAL_CONFIG.Snackbar.bgLight :
+GLOBAL_CONFIG.Snackbar.bgDark
+var snackbarPos = GLOBAL_CONFIG.Snackbar.position
+Snackbar.show({
+text: '✨ 小窝更新啦！ 👉',
+backgroundColor: snackbarBg,
+duration: 500000,
+pos: snackbarPos,
+actionText: '🍭查看新品🍬',
+actionTextColor: '#fff',
+onActionClick: function(e) {
+location.reload()
+},
+})
+} else {
+var showBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+'#49b1f5' :
+'#1f1f1f'
+var cssText = `top: 0; background: ${showBg};`
+document.getElementById('app-refresh').style.cssText = cssText
+}
+}</script></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://jsdelivr.luozhinet.com/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?luozhixiaowo";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="luozhixiaowo";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="height:100%;display: flex;align-items: center;justify-content: center;"><svg style="height:50px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:248px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><script data-pjax>function electric_clock_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img id="card-clock-loading" src= "/img/planeloading.jpg" data-lazy-src="https://jsdelivr.luozhinet.com/gh/Zfour/Butterfly-clock/clock/images/weather/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading" class="entered loading"></div></div></div></div></div>';
+                console.log('已挂载electric_clock')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            electric_clock_injector_config()
+        } </script><script src="https://pv.sohu.com/cityjson?ie=utf-8"></script><script data-pjax  src="https://cdn.jsdelivr.net/gh/Zfour/hexo-electric-clock@1.0.6/clock.js"></script><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><div id="ghbdages" style="overflow:hidden;max-height:90px;height:auto;text-align:center;margin-top:10px"><div class="swiper-wrapper"><div class="swiper-slide"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" title="博客框架为Hexo_v5.4.0"><img src= "/img/planeloading.jpg" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" title="主题版本Butterfly_v4.0.2"><img src= "/img/planeloading.jpg" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://www.jsdelivr.com/" style="margin-inline:5px" title="本站使用JsDelivr为静态资源提供CDN加速"><img src= "/img/planeloading.jpg" data-lazy-src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&amp;logo=jsDelivr" alt=""/></a></div><div class="swiper-slide"><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" title="本站采用双线部署，联通线路托管于Vercel"><img src= "/img/planeloading.jpg" data-lazy-src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://dashboard.4everland.org/" style="margin-inline:5px" title="本站采用双线部署，默认线路托管于4everland"><img src= "/img/planeloading.jpg" data-lazy-src="https://img.shields.io/badge/Hosted-4everland-0cedbe?style=flat&amp;logo=4everland" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" title="本站项目由Github托管"><img src= "/img/planeloading.jpg" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a></div><div class="swiper-slide"><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"><img src= "/img/planeloading.jpg" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></div></div></div><style>a.github-badge:hover:before {display:none}</style>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="/lib/runtime.js"></script><script defer src="/lib/swiper.min.js"></script><script defer data-pjax src="/lib/swiperbdage_init.min.js"></script><!-- hexo injector body_end end --><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
