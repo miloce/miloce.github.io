@@ -6,7 +6,7 @@
   <link href="https://luozhinet.com/atom.xml" rel="self"/>
   
   <link href="https://luozhinet.com/"/>
-  <updated>2022-08-17T07:21:27.176Z</updated>
+  <updated>2022-09-04T00:51:58.013Z</updated>
   <id>https://luozhinet.com/</id>
   
   <author>
@@ -15,6 +15,55 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>IP地址、子网掩码、网关、DNS的介绍</title>
+    <link href="https://luozhinet.com/posts/977559db5f28/"/>
+    <id>https://luozhinet.com/posts/977559db5f28/</id>
+    <published>2022-09-04T00:00:00.000Z</published>
+    <updated>2022-09-04T00:51:58.013Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;IP地址、子网掩码、网关、DNS的介绍&quot;&gt;&lt;a href=&quot;#IP地址、子网掩码、网关、DNS的介绍&quot; class=&quot;headerlink&quot; title=&quot;IP地址、子网掩码、网关、DNS的介绍&quot;&gt;&lt;/a&gt;IP地址、子网掩码、网关、DNS的介绍&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="技术教程" scheme="https://luozhinet.com/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="域名" scheme="https://luozhinet.com/tags/%E5%9F%9F%E5%90%8D/"/>
+    
+    <category term="格式" scheme="https://luozhinet.com/tags/%E6%A0%BC%E5%BC%8F/"/>
+    
+    <category term="网络" scheme="https://luozhinet.com/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="地址" scheme="https://luozhinet.com/tags/%E5%9C%B0%E5%9D%80/"/>
+    
+    <category term="处理" scheme="https://luozhinet.com/tags/%E5%A4%84%E7%90%86/"/>
+    
+    <category term="资源" scheme="https://luozhinet.com/tags/%E8%B5%84%E6%BA%90/"/>
+    
+    <category term="转换" scheme="https://luozhinet.com/tags/%E8%BD%AC%E6%8D%A2/"/>
+    
+    <category term="使用" scheme="https://luozhinet.com/tags/%E4%BD%BF%E7%94%A8/"/>
+    
+    <category term="分配" scheme="https://luozhinet.com/tags/%E5%88%86%E9%85%8D/"/>
+    
+    <category term="子网掩码" scheme="https://luozhinet.com/tags/%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81/"/>
+    
+    <category term="互连" scheme="https://luozhinet.com/tags/%E4%BA%92%E8%BF%9E/"/>
+    
+    <category term="tcp" scheme="https://luozhinet.com/tags/tcp/"/>
+    
+    <category term="二进制" scheme="https://luozhinet.com/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6/"/>
+    
+  </entry>
   
   <entry>
     <title>移动电信联通三网改套餐项目操作步骤</title>
@@ -623,55 +672,6 @@
     <category term="ttl" scheme="https://luozhinet.com/tags/ttl/"/>
     
     <category term="tracert" scheme="https://luozhinet.com/tags/tracert/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>IP地址、子网掩码、网关、DNS的介绍</title>
-    <link href="https://luozhinet.com/posts/ee26c38570a0/"/>
-    <id>https://luozhinet.com/posts/ee26c38570a0/</id>
-    <published>2022-05-22T08:31:00.000Z</published>
-    <updated>2022-06-02T18:04:48.253Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;IP地址、子网掩码、网关、DNS的介绍&quot;&gt;&lt;a href=&quot;#IP地址、子网掩码、网关、DNS的介绍&quot; class=&quot;headerlink&quot; title=&quot;IP地址、子网掩码、网关、DNS的介绍&quot;&gt;&lt;/a&gt;IP地址、子网掩码、网关、DNS的介绍&lt;/h1&gt;&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="技术教程" scheme="https://luozhinet.com/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/"/>
-    
-    
-    <category term="域名" scheme="https://luozhinet.com/tags/%E5%9F%9F%E5%90%8D/"/>
-    
-    <category term="格式" scheme="https://luozhinet.com/tags/%E6%A0%BC%E5%BC%8F/"/>
-    
-    <category term="网络" scheme="https://luozhinet.com/tags/%E7%BD%91%E7%BB%9C/"/>
-    
-    <category term="地址" scheme="https://luozhinet.com/tags/%E5%9C%B0%E5%9D%80/"/>
-    
-    <category term="处理" scheme="https://luozhinet.com/tags/%E5%A4%84%E7%90%86/"/>
-    
-    <category term="资源" scheme="https://luozhinet.com/tags/%E8%B5%84%E6%BA%90/"/>
-    
-    <category term="转换" scheme="https://luozhinet.com/tags/%E8%BD%AC%E6%8D%A2/"/>
-    
-    <category term="使用" scheme="https://luozhinet.com/tags/%E4%BD%BF%E7%94%A8/"/>
-    
-    <category term="分配" scheme="https://luozhinet.com/tags/%E5%88%86%E9%85%8D/"/>
-    
-    <category term="子网掩码" scheme="https://luozhinet.com/tags/%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81/"/>
-    
-    <category term="互连" scheme="https://luozhinet.com/tags/%E4%BA%92%E8%BF%9E/"/>
-    
-    <category term="tcp" scheme="https://luozhinet.com/tags/tcp/"/>
-    
-    <category term="二进制" scheme="https://luozhinet.com/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6/"/>
     
   </entry>
   
