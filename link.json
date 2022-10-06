@@ -18,6 +18,14 @@
     ]
   },
   {
+      "name": "贝塔小屋",
+      "link": "http://3oo.me",
+      "avatar": "https://q1.qlogo.cn/g?b=qq&nk=1043897710&s=100",
+      "descr": "一个爱复制代码分析的贝塔"
+     }
+   ]
+  },
+  {
     "class_name": "网站",
     "class_desc": "值得推荐的网站",
     "link_list": [
