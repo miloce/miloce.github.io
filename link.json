@@ -1,7 +1,31 @@
 [
   {
-    "class_name": "友情链接",
-    "class_desc": "那些人，那些事",
+    "class_name": "鸣谢",
+    "class_desc": "感谢以下网站的付出",
+    "link_list": [
+      {
+        "name": "HEXO",
+        "link": "https://hexo.io/zh-cn/",
+        "avatar": "https://hexo.io/icon/favicon-196x196.png",
+        "descr": "Hexo官网，本站基础框架"
+      },
+      {
+        "name": "VERCEL",
+        "link": "https://vercel.com/",
+        "avatar": "https://camo.githubusercontent.com/add2c9721e333f0043ac938f3dadbc26a282776e01b95b308fcaba5afaf74ae3/68747470733a2f2f6173736574732e76657263656c2e636f6d2f696d6167652f75706c6f61642f76313538383830353835382f7265706f7369746f726965732f76657263656c2f6c6f676f2e706e67",
+        "descr": "项目托管网站，本站就托管于此"
+      },
+      {
+        "name": "Butterfly",
+        "link": "https://butterfly.js.org/",
+        "avatar": "https://butterfly.js.org/img/avatar.png",
+        "descr": "感谢大佬所做主题"
+      }
+    ]
+  },
+  {
+    "class_name": "我的小伙伴们",
+    "class_desc": "",
     "link_list": [
       {
         "name": "洛栀の小窝",
@@ -22,16 +46,22 @@
         "descr": "随记随看"
       },
      {
-      "name": "贝塔小屋",
-      "link": "http://3oo.me",
-      "avatar": "https://q1.qlogo.cn/g?b=qq&nk=1043897710&s=100",
-      "descr": "一个爱复制代码分析的贝塔"
+      "name": "鑫云博客",
+      "link": "https://www.xinynet.cn/",
+      "avatar": "https://q1.qlogo.cn/g?b=qq&nk=2129277481&s=100",
+      "descr": ""
+     },
+     {
+      "name": "鱼肥官网",
+      "link": "https://www.yufeigw.com/",
+      "avatar": "https://q1.qlogo.cn/g?b=qq&nk=2728135124&s=100",
+      "descr": ""
      }
    ]
   },
   {
     "class_name": "网站",
-    "class_desc": "值得推荐的网站",
+    "class_desc": "",
     "link_list": [
       {
         "name": "Youtube",
@@ -43,14 +73,26 @@
         "name": "Weibo",
         "link": "https://www.weibo.com/",
         "avatar": "https://i.loli.net/2020/05/14/TLJBum386vcnI1P.png",
-        "descr": "中国最大社交分享平臺"
+        "descr": "中国最大社交分享平台"
       },
       {
         "name": "Twitter",
         "link": "https://twitter.com/",
         "avatar": "https://i.loli.net/2020/05/14/5VyHPQqR6LWF39a.png",
-        "descr": "社交分享平臺"
+        "descr": "社交分享平台"
       }
+    ]
+  },
+  {
+    "class_name": "失联的小伙伴",
+    "class_desc": "",
+    "link_list": [
+      {
+      "name": "贝塔小屋",
+      "link": "http://3oo.me",
+      "avatar": "https://q1.qlogo.cn/g?b=qq&nk=1043897710&s=100",
+      "descr": "一个爱复制代码分析的贝塔"
+     }
     ]
   }
 ]
