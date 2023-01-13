@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>堵猫猫小游戏</title>
+      <link href="/posts/096db3c03b6e/"/>
+      <url>/posts/096db3c03b6e/</url>
+      
+        <content type="html"><![CDATA[<h1 id="捉住小猫"><a href="#捉住小猫" class="headerlink" title="捉住小猫"></a>捉住小猫</h1><div><iframe src="/html/catch-the-cat/index.html" scrolling="no" border="0" frameborder="no" framespacing="0" high_quality="1" danmaku="1" allowfullscreen></iframe></div><h2 id="游戏玩法"><a href="#游戏玩法" class="headerlink" title="游戏玩法"></a>游戏玩法</h2><ul><li>点击小圆点，围住小猫。</li><li>你点击一次，小猫走一次。</li><li>直到你把小猫围住（赢），或者小猫走到边界并逃跑（输）。</li></ul><h2 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h2><p><a href="https://luozhinet.lanzouw.com/ioFiU0ky5huh">游戏源代码点击下载</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 源码分享 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 堵猫猫 </tag>
+            
+            <tag> 小游戏 </tag>
+            
+            <tag> 源代码 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>用树莓派USB摄像头做个监控</title>
       <link href="/posts/2c9261572067/"/>
       <url>/posts/2c9261572067/</url>
@@ -723,39 +752,6 @@
             <tag> 密码 </tag>
             
             <tag> wifi </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>iPhone手机一个操作直接屏蔽垃圾短信</title>
-      <link href="/posts/9ab3404f1e1f/"/>
-      <url>/posts/9ab3404f1e1f/</url>
-      
-        <content type="html"><![CDATA[<p>iPhone手机一个操作直接屏蔽垃圾短信</p><p>洛栀本次为大家分享的是iPhone手机一个操作直接屏蔽垃圾短信<br>相信每个小伙伴的手机里，都有很多讨厌的垃圾短信；</p><p><img src="http://static.luozhinet.com/62/86940bb8ed1c605917e46c47978a50" alt="iPhone手机一个操作直接屏蔽垃圾短信" title="iPhone手机一个操作直接屏蔽垃圾短信"></p><p>像童年这样的，从来不用短信，学了各种操作屏蔽，却还是能收到，简直是大无语～</p><p><img src="http://static.luozhinet.com/a7/f729fadf1d10b6382514276ff70cf9" alt="iPhone手机一个操作直接屏蔽垃圾短信" title="iPhone手机一个操作直接屏蔽垃圾短信"></p><p>童年研究以后，发现 App Store 里有一个特别好用的免费 App ，有需要的小伙伴可以安排一下子；（大家去苹果商店搜索一下“短信狗“，找到下面这个样子的 App 就行图片）</p><p><img src="http://static.luozhinet.com/07/9e42dc5ac8d70c5456c55b913ceeef" alt="iPhone手机一个操作直接屏蔽垃圾短信" title="iPhone手机一个操作直接屏蔽垃圾短信"></p><p>如何设置<br>操作方法很简单，下载成功后，咱们只需要打开 iPhone - 设置 - 信息，下滑找到“未知与过滤信息“并点击进入，随后选择“短信狗”即可；</p><p><img src="http://static.luozhinet.com/dd/958c4a39fbdfedc5cc3051053cede6" alt="iPhone手机一个操作直接屏蔽垃圾短信" title="iPhone手机一个操作直接屏蔽垃圾短信"></p><p>为了防止某些消息收不到，咱们可以进入该 App 后设置一下筛选条件～<br>比如发工资的信息神马的图片图片图片<br>可以在该 App 中将“不过滤五位数号码”开启，下滑在“自定义过滤 - 号码过滤规则”中，添加一些你经常收到的垃圾短信的号码模式，并选择“存储”；</p><p><img src="http://static.luozhinet.com/c6/03a1a619895139dc130cd342d75643" alt="iPhone手机一个操作直接屏蔽垃圾短信" title="iPhone手机一个操作直接屏蔽垃圾短信"></p><p>反正设置以后，本喵感觉整个世界都清净了…</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 技巧分享 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 操作 </tag>
-            
-            <tag> 屏蔽 </tag>
-            
-            <tag> 短信 </tag>
-            
-            <tag> 垃圾 </tag>
-            
-            <tag> iphone </tag>
             
         </tags>
       
