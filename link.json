@@ -50,7 +50,13 @@
       "link": "https://www.xinynet.cn/",
       "avatar": "https://q1.qlogo.cn/g?b=qq&nk=2129277481&s=100",
       "descr": ""
-     }
+     },
+      {
+        "name": "老麦的书房",
+        "link": "https://tangx.in/",
+        "avatar": "https://tangx.in/logo/avatar.png",
+        "descr": " Go 语言 (golang)、 云原生、 DevOps、 可视化追踪。"
+      }
    ]
   },
   {
@@ -75,18 +81,6 @@
         "avatar": "https://i.loli.net/2020/05/14/5VyHPQqR6LWF39a.png",
         "descr": "社交分享平台"
       }
-    ]
-  },
-  {
-    "class_name": "失联的小伙伴",
-    "class_desc": "",
-    "link_list": [
-      {
-      "name": "贝塔小屋",
-      "link": "http://3oo.me",
-      "avatar": "https://q1.qlogo.cn/g?b=qq&nk=1043897710&s=100",
-      "descr": "一个爱复制代码分析的贝塔"
-     }
     ]
   }
 ]
