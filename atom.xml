@@ -6,7 +6,7 @@
   <link href="https://blog.luozhinet.com/atom.xml" rel="self"/>
   
   <link href="https://blog.luozhinet.com/"/>
-  <updated>2024-12-10T13:26:26.943Z</updated>
+  <updated>2025-05-11T03:05:46.490Z</updated>
   <id>https://blog.luozhinet.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【源码分享】ZeppLife微信支付宝刷步数源码分享非第三方接口</title>
+    <link href="https://blog.luozhinet.com/posts/d1ded2bacbfc/"/>
+    <id>https://blog.luozhinet.com/posts/d1ded2bacbfc/</id>
+    <published>2025-05-11T02:55:06.000Z</published>
+    <updated>2025-05-11T03:05:46.490Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;通过 Zepp Life（原小米运动）API 实现了一个工具，可以同步用户的运动步数到微信和支付宝。&lt;br&gt;项目源码地址:&lt;br&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="微信" scheme="https://blog.luozhinet.com/tags/%E5%BE%AE%E4%BF%A1/"/>
+    
+    <category term="Zepp Life" scheme="https://blog.luozhinet.com/tags/Zepp-Life/"/>
+    
+    <category term="运动步数" scheme="https://blog.luozhinet.com/tags/%E8%BF%90%E5%8A%A8%E6%AD%A5%E6%95%B0/"/>
+    
+    <category term="支付宝" scheme="https://blog.luozhinet.com/tags/%E6%94%AF%E4%BB%98%E5%AE%9D/"/>
+    
+    <category term="源码分享" scheme="https://blog.luozhinet.com/tags/%E6%BA%90%E7%A0%81%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>软著申请全面攻略：从零到成功，轻松上手</title>
@@ -640,39 +671,6 @@
     <category term="BS架构" scheme="https://blog.luozhinet.com/tags/BS%E6%9E%B6%E6%9E%84/"/>
     
     <category term="流程" scheme="https://blog.luozhinet.com/tags/%E6%B5%81%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>子网掩码、前缀长度、IP地址数的换算</title>
-    <link href="https://blog.luozhinet.com/posts/4358b00bc797/"/>
-    <id>https://blog.luozhinet.com/posts/4358b00bc797/</id>
-    <published>2022-05-12T06:38:00.000Z</published>
-    <updated>2022-05-18T15:05:28.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;子网掩码、前缀长度、IP地址数的换算&quot;&gt;&lt;a href=&quot;#子网掩码、前缀长度、IP地址数的换算&quot; class=&quot;headerlink&quot; title=&quot;子网掩码、前缀长度、IP地址数的换算&quot;&gt;&lt;/a&gt;子网掩码、前缀长度、IP地址数的换算&lt;/h1&gt;&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="技术教程" scheme="https://blog.luozhinet.com/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/"/>
-    
-    
-    <category term="地址" scheme="https://blog.luozhinet.com/tags/%E5%9C%B0%E5%9D%80/"/>
-    
-    <category term="子网掩码" scheme="https://blog.luozhinet.com/tags/%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81/"/>
-    
-    <category term="长度" scheme="https://blog.luozhinet.com/tags/%E9%95%BF%E5%BA%A6/"/>
-    
-    <category term="255.255.255.0" scheme="https://blog.luozhinet.com/tags/255-255-255-0/"/>
-    
-    <category term="个数" scheme="https://blog.luozhinet.com/tags/%E4%B8%AA%E6%95%B0/"/>
     
   </entry>
   
