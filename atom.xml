@@ -6,7 +6,7 @@
   <link href="https://blog.luozhinet.com/atom.xml" rel="self"/>
   
   <link href="https://blog.luozhinet.com/"/>
-  <updated>2025-05-11T03:05:46.490Z</updated>
+  <updated>2025-05-11T06:25:13.026Z</updated>
   <id>https://blog.luozhinet.com/</id>
   
   <author>
@@ -17,11 +17,42 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>利用腾讯CNB云原生构建免费部署一个微信运动刷步数的工具</title>
+    <link href="https://blog.luozhinet.com/posts/c0ae68f04a1c/"/>
+    <id>https://blog.luozhinet.com/posts/c0ae68f04a1c/</id>
+    <published>2025-05-11T06:20:08.000Z</published>
+    <updated>2025-05-11T06:25:13.026Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;项目地址：https-github-com-miloce-Zepp-Life-Steps&quot;&gt;&lt;a href=&quot;#项目地址：https-github-com-miloce-Zepp-Life-Steps&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="技术分享" scheme="https://blog.luozhinet.com/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/"/>
+    
+    
+    <category term="腾讯CNB" scheme="https://blog.luozhinet.com/tags/%E8%85%BE%E8%AE%AFCNB/"/>
+    
+    <category term="云原生构建" scheme="https://blog.luozhinet.com/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E6%9E%84%E5%BB%BA/"/>
+    
+    <category term="微信运动" scheme="https://blog.luozhinet.com/tags/%E5%BE%AE%E4%BF%A1%E8%BF%90%E5%8A%A8/"/>
+    
+    <category term="刷步数工具" scheme="https://blog.luozhinet.com/tags/%E5%88%B7%E6%AD%A5%E6%95%B0%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【源码分享】ZeppLife微信支付宝刷步数源码分享非第三方接口</title>
     <link href="https://blog.luozhinet.com/posts/d1ded2bacbfc/"/>
     <id>https://blog.luozhinet.com/posts/d1ded2bacbfc/</id>
     <published>2025-05-11T02:55:06.000Z</published>
-    <updated>2025-05-11T03:05:46.490Z</updated>
+    <updated>2025-05-11T05:48:20.172Z</updated>
     
     
       
@@ -643,34 +674,6 @@
     <category term="linux" scheme="https://blog.luozhinet.com/tags/linux/"/>
     
     <category term="实用命令" scheme="https://blog.luozhinet.com/tags/%E5%AE%9E%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>BS架构通用质量保障工作流程</title>
-    <link href="https://blog.luozhinet.com/posts/b1a6e353d3b0/"/>
-    <id>https://blog.luozhinet.com/posts/b1a6e353d3b0/</id>
-    <published>2022-05-12T08:32:00.000Z</published>
-    <updated>2023-01-13T14:56:30.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;质量保障是做好产品十分重要的一步，但是为了快速起项目形成业务，很多项目在设计之初全由前后端开发人员自测，稳定上线后才补上质量保障侧的内容。本文旨在梳理一套BS架构产品的通用质量保障模型。&lt;/p&gt;
-&lt;h1 id=&quot;产品设计与技术评审阶段&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="技术教程" scheme="https://blog.luozhinet.com/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/"/>
-    
-    
-    <category term="BS架构" scheme="https://blog.luozhinet.com/tags/BS%E6%9E%B6%E6%9E%84/"/>
-    
-    <category term="流程" scheme="https://blog.luozhinet.com/tags/%E6%B5%81%E7%A8%8B/"/>
     
   </entry>
   

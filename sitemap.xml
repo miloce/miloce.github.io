@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.luozhinet.com/posts/c0ae68f04a1c/</loc>
+    
+    <lastmod>2025-05-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.luozhinet.com/posts/d1ded2bacbfc/</loc>
     
     <lastmod>2025-05-11</lastmod>
@@ -1024,6 +1033,34 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://blog.luozhinet.com/tags/%E8%85%BE%E8%AE%AFCNB/</loc>
+    <lastmod>2025-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.luozhinet.com/tags/%E4%BA%91%E5%8E%9F%E7%94%9F%E6%9E%84%E5%BB%BA/</loc>
+    <lastmod>2025-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.luozhinet.com/tags/%E5%BE%AE%E4%BF%A1%E8%BF%90%E5%8A%A8/</loc>
+    <lastmod>2025-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.luozhinet.com/tags/%E5%88%B7%E6%AD%A5%E6%95%B0%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2025-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -1056,6 +1093,13 @@
   
   <url>
     <loc>https://blog.luozhinet.com/categories/%E6%8A%80%E5%B7%A7%E5%88%86%E4%BA%AB/</loc>
+    <lastmod>2025-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.luozhinet.com/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/</loc>
     <lastmod>2025-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
