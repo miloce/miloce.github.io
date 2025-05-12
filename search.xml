@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>基于 UptimeRobot 的开源站点监控面板——快速上手与部署指南</title>
+      <link href="/posts/059b6e0600ce/"/>
+      <url>/posts/059b6e0600ce/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在日常运维或开发中，及时掌握网站健康状态至关重要。本篇文章分享一个基于 UptimeRobot API 开源的站点监控面板，从项目特点、部署方式到实践经验，帮助你快速上手并集成到生产环境。</p><hr><p><img src="https://cdn.jsdelivr.net/gh/miloce/uptime-monitor/img/7.png" alt="使用 UptimeRobot 对网站和服务器实时监控"></p><h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><p>本项目采用 PHP + Material Design 前端框架，结合 UptimeRobot API 实现：</p><ul><li>实时监控站点可用性（HTTP、Ping、TCP、端口、关键词）</li><li>多站点批量管理</li><li>可视化数据统计与图表展示</li><li>优雅加载动画与响应式设计</li><li>支持环境变量配置，兼容 Vercel 一键部署</li></ul><hr><h2 id="功能亮点"><a href="#功能亮点" class="headerlink" title="功能亮点"></a>功能亮点</h2><ol><li><p><strong>多种监控方式</strong></p><ul><li>HTTP(s)、Ping、TCP、端口、关键词，覆盖大多数场景</li></ul></li><li><p><strong>数据可视化</strong></p><ul><li>使用 Chart.js 绘制可用率和响应时间曲线，直观展示历史趋势<br><img src="https://cdn.jsdelivr.net/gh/miloce/uptime-monitor/img/8.png" alt="使用 UptimeRobot 对网站和服务器实时监控"></li></ul></li><li><p><strong>灵活配置</strong></p><ul><li>环境变量：<code>UPTIMEROBOT_API_KEY</code>、<code>SITE_NAME</code></li><li><code>api/config.php</code>：可自定义 <code>count_days</code>、<code>show_link</code>、导航菜单等</li></ul></li><li><p><strong>Vercel 一键部署</strong></p><ul><li>点击”Deploy with Vercel”按钮，填写 API Key 即可上线，无需运维配置</li></ul></li><li><p><strong>日志与加载优化</strong></p><ul><li>加载动画提升用户体验<br><img src="https://cdn.jsdelivr.net/gh/miloce/uptime-monitor/img/9.png" alt="使用 UptimeRobot 对网站和服务器实时监控"></li></ul></li></ol><hr><h2 id="部署前准备"><a href="#部署前准备" class="headerlink" title="部署前准备"></a>部署前准备</h2><ul><li>首先，去官网 <a href="https://dashboard.uptimerobot.com/sign-up">UptimeRobot 注册</a> 注册一个账号，使用邮箱即可完成注册。</li></ul><p><img src="https://cdn.jsdelivr.net/gh/miloce/uptime-monitor/img/1.png" alt="使用 UptimeRobot 对网站和服务器实时监控"></p><p><img src="https://cdn.jsdelivr.net/gh/miloce/uptime-monitor/img/2.png" alt="使用 UptimeRobot 对网站和服务器实时监控"></p><ul><li>注册完成之后登录，然后点击<a href="https://dashboard.uptimerobot.com/"><strong>Dashboard</strong></a>，进入仪表盘。</li></ul><p><img src="https://cdn.jsdelivr.net/gh/miloce/uptime-monitor/img/3.png" alt="使用 UptimeRobot 对网站和服务器实时监控"></p><ul><li>点击右上方 <strong>New Monitor</strong>，开始设置监控。</li></ul><blockquote><p>有四种监控方式，分别为<strong>Http(s)<strong>、</strong>Ping</strong>、<strong>Port</strong>、<strong>Keyword</strong>，在这里我选择<strong>Http(s)<strong>来监控我的网站，选择</strong>Ping</strong>来监控我的服务器。<strong>Port</strong>一般用于VPS监控。</p></blockquote><ul><li>填写监控种类、监控站点以及监控频率，注意勾选提醒邮箱。</li></ul><p><img src="https://cdn.jsdelivr.net/gh/miloce/uptime-monitor/img/4.png" alt="使用 UptimeRobot 对网站和服务器实时监控"></p><p><img src="https://cdn.jsdelivr.net/gh/miloce/uptime-monitor/img/5.png" alt="使用 UptimeRobot 对网站和服务器实时监控"></p><h2 id="部署指南"><a href="#部署指南" class="headerlink" title="部署指南"></a>部署指南</h2><h3 id="一键部署（推荐）"><a href="#一键部署（推荐）" class="headerlink" title="一键部署（推荐）"></a>一键部署（推荐）</h3><p><a href="https://vercel.com/new/clone?repository-url=https://github.com/miloce/uptime-monitor&env=UPTIMEROBOT_API_KEY,TOKEN,SITE_NAME">Deploy with Vercel</a></p><ol><li>点击页面中的 <strong>Deploy with Vercel</strong> 按钮</li><li>在 Vercel 控制台中设置环境变量：<ul><li><code>UPTIMEROBOT_API_KEY</code>：你的 UptimeRobot API Key</li><li><code>SITE_NAME</code>：站点名称（可选，默认 “Uptime Monitor”）</li></ul></li><li>等待 Vercel 构建并自动分配域名，即可访问</li></ol><h3 id="手动部署"><a href="#手动部署" class="headerlink" title="手动部署"></a>手动部署</h3><ol><li>克隆项目：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/miloce/uptime-monitor.git</span><br><span class="line"><span class="built_in">cd</span> uptime-monitor</span><br></pre></td></tr></table></figure></li><li>设置环境变量 或 修改 <code>api/config.php</code> 中的 <code>api_keys</code> 和 <code>site_name</code></li><li>启动本地服务器：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -S localhost:8000 -t api</span><br></pre></td></tr></table></figure></li><li>浏览器访问 <code>http://localhost:8000</code></li></ol><hr><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>该项目已在 GitHub 开源，欢迎 Fork、Star 与 Issue 反馈。希望本文能帮助你快速搭建可视化、易用的监控面板，为网站稳定运行保驾护航！</p><ul><li>仓库地址：<a href="https://github.com/miloce/uptime-monitor">https://github.com/miloce/uptime-monitor</a></li><li>建议与反馈：请打开 Issues 或在评论区留言</li></ul><hr><blockquote><p>开源项目，欢迎使用与贡献 </p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术分享 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> UptimeRobot </tag>
+            
+            <tag> 站点监控面板 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>利用腾讯CNB云原生构建免费部署一个微信运动刷步数的工具</title>
       <link href="/posts/c0ae68f04a1c/"/>
       <url>/posts/c0ae68f04a1c/</url>
