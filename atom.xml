@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>洛栀の小窝</title>
+  <title>Joy小站</title>
   <icon>https://blog.luozhinet.com/icon.png</icon>
   <subtitle>Blog.Luozhinet.com</subtitle>
   <link href="https://blog.luozhinet.com/atom.xml" rel="self"/>
@@ -10,7 +10,7 @@
   <id>https://blog.luozhinet.com/</id>
   
   <author>
-    <name>洛栀</name>
+    <name>Miloce</name>
     
   </author>
   
