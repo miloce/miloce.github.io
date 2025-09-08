@@ -192,8 +192,6 @@
             
             <tag> 文件 </tag>
             
-            <tag> 软件 </tag>
-            
             <tag> 图片 </tag>
             
             <tag> 素材 </tag>
@@ -201,6 +199,8 @@
             <tag> 录制 </tag>
             
             <tag> 同学 </tag>
+            
+            <tag> 软件 </tag>
             
             <tag> 空间 </tag>
             
@@ -274,13 +274,13 @@
       
         <tags>
             
-            <tag> 免费 </tag>
-            
             <tag> 网站 </tag>
             
             <tag> 转换 </tag>
             
             <tag> pdf </tag>
+            
+            <tag> 免费 </tag>
             
             <tag> 格式 </tag>
             
@@ -849,9 +849,9 @@
             
             <tag> 微信 </tag>
             
-            <tag> 技巧 </tag>
-            
             <tag> 操作 </tag>
+            
+            <tag> 技巧 </tag>
             
             <tag> 授权 </tag>
             
