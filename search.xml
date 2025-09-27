@@ -4,11 +4,42 @@
   
     
     <entry>
-      <title>招商银行微信动账提醒开通工具</title>
-      <link href="/posts/9d119b73dd2a/"/>
-      <url>/posts/9d119b73dd2a/</url>
+      <title>最新可用刷步数教程</title>
+      <link href="/posts/311ae06fbc6f/"/>
+      <url>/posts/311ae06fbc6f/</url>
       
-        <content type="html"><![CDATA[<h1 id="招商银行微信动账提醒开通工具"><a href="#招商银行微信动账提醒开通工具" class="headerlink" title="招商银行微信动账提醒开通工具"></a>招商银行微信动账提醒开通工具</h1><blockquote><p>招商银行微信动账提醒，快速自助开通教程</p></blockquote><h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="1-关注服务号"><a href="#1-关注服务号" class="headerlink" title="1. 关注服务号"></a>1. 关注服务号</h3><p>微信关注”<strong>招商银行</strong>“服务号</p><img src="/posts/9d119b73dd2a/cmb-service-account.png" class="" title="招商银行服务号二维码"><h3 id="2-复制链接"><a href="#2-复制链接" class="headerlink" title="2. 复制链接"></a>2. 复制链接</h3><p>点击服务号菜单，复制链接地址</p><img src="/posts/9d119b73dd2a/jc.jpg" class="" title="教程"><h3 id="3-解析开通"><a href="#3-解析开通" class="headerlink" title="3. 解析开通"></a>3. 解析开通</h3><p>粘贴链接到下方工具中解析开通</p><div style="background:#f8f9fa; border-radius:8px; padding:20px; margin:20px 0;"><textarea id="cmbUrlInput" placeholder="请粘贴从招商银行服务号复制的链接..." style="width:100%; height:80px; padding:12px; border:1px solid #ddd; border-radius:6px; font-size:14px;"></textarea><div style="display:flex; gap:10px; margin-top:15px;"><button onclick="clearCmbInput()" style="flex:1; padding:10px; background:#6c757d; color:white; border:none; border-radius:6px; cursor:pointer;">清空</button><button onclick="parseCmbUrl()" style="flex:1; padding:10px; background:#c7000b; color:white; border:none; border-radius:6px; cursor:pointer;">解析</button></div></div><script>function clearCmbInput() {    const input = document.getElementById('cmbUrlInput');    if(input.value && confirm('确定要清空内容吗？')) {        input.value = '';    }}function parseCmbUrl() {    const url = document.getElementById('cmbUrlInput').value.trim();    if(!url) return alert('请先粘贴链接内容');        let openId, unionId;    let decodedUrl = url;        // 多层URL解码    for(let i = 0; i < 3; i++) {        try {            // 尝试从URL参数中获取            const urlObj = new URL(decodedUrl);            const params = new URLSearchParams(urlObj.search);                        openId = openId || params.get('OpenId') || params.get('openid');            unionId = unionId || params.get('UnionId') || params.get('unionid');                        // 进一步解码            const newDecoded = decodeURIComponent(decodedUrl);            if(newDecoded === decodedUrl) break;            decodedUrl = newDecoded;                    } catch(e) {            // 如果不是完整URL，尝试直接解析参数            if(decodedUrl.includes('OpenId=') || decodedUrl.includes('openid=')) {                const paramStr = decodedUrl.includes('?') ? decodedUrl.split('?')[1] : decodedUrl;                const params = new URLSearchParams(paramStr);                openId = openId || params.get('OpenId') || params.get('openid');                unionId = unionId || params.get('UnionId') || params.get('unionid');            }            break;        }    }        if(openId && unionId) {        if(confirm('解析成功！是否跳转到招商银行APP开通页面？')) {            window.location.href = `http://jump.m.cmbchina.com/ZEEUsFCX?UnionId=${unionId}&OpenId=${openId}`;        }    } else {        alert('解析失败，请检查链接是否正确或联系客服');    }}</script><h2 id="温馨提示"><a href="#温馨提示" class="headerlink" title="温馨提示"></a>温馨提示</h2><ul><li>请确保从招商银行<strong>服务号</strong>获取链接</li><li>本工具仅在浏览器本地运行，保障信息安全</li><li>开通后即可享受微信实时交易提醒</li></ul><hr><p><em>感谢使用，如有问题请留言反馈</em></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="最新可用刷步数教程"><a href="#最新可用刷步数教程" class="headerlink" title="最新可用刷步数教程"></a>最新可用刷步数教程</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><strong>Zepp</strong> 是一个同步步数的软件，可以同步微信步数和支付宝步数。</p><blockquote><p><strong>⚠️ 重要提示：教程安卓苹果通用！请看完教程再去操作</strong></p></blockquote><h2 id="使用教程"><a href="#使用教程" class="headerlink" title="使用教程"></a>使用教程</h2><h3 id="第一步：下载安装-Zepp"><a href="#第一步：下载安装-Zepp" class="headerlink" title="第一步：下载安装 Zepp"></a>第一步：下载安装 Zepp</h3><p>不论是苹果用户还是安卓用户都在自带的应用商店里搜索安装「<strong>Zepp</strong>」这款应用。</p><img title="下载Zepp应用" alt="下载Zepp应用" class="class1 class2" src="https://static.luozhinet.com/blog/images/jxkysbsjc/1.png?imageView2/2/w/600"><h3 id="第二步：注册账号"><a href="#第二步：注册账号" class="headerlink" title="第二步：注册账号"></a>第二步：注册账号</h3><p>安装完成后，打开Zepp，<strong>必须点击注册</strong></p><img title="注册账号" alt="注册账号" class="class1 class2" src="https://static.luozhinet.com/blog/images/zxkysbsjc/2.png?imageView2/2/w/600"><h3 id="第三步：填写注册信息"><a href="#第三步：填写注册信息" class="headerlink" title="第三步：填写注册信息"></a>第三步：填写注册信息</h3><p>注册邮箱地址格式：<strong>QQ号@qq.com</strong></p><p><strong>示例：</strong> <code>285xxxxxxx@qq.com</code></p><img title="填写注册信息" alt="填写注册信息" class="class1 class2" src="https://static.luozhinet.com/blog/images/zxkysbsjc/3.png?imageView2/2/w/600"><h3 id="第四步：绑定第三方账号"><a href="#第四步：绑定第三方账号" class="headerlink" title="第四步：绑定第三方账号"></a>第四步：绑定第三方账号</h3><p>点击右上角头像进入「<strong>我的设置</strong>」，在界面内找到「<strong>三方账号绑定</strong>」并点击。</p><img title="绑定第三方账号" alt="绑定第三方账号" class="class1 class2" src="https://static.luozhinet.com/blog/images/zxkysbsjc/4.png?imageView2/2/w/600"><h3 id="第五步：选择同步平台"><a href="#第五步：选择同步平台" class="headerlink" title="第五步：选择同步平台"></a>第五步：选择同步平台</h3><p>在页面内选择自己<strong>想要同步的平台</strong>并进行<strong>绑定</strong></p><img title="选择同步平台" alt="选择同步平台" class="class1 class2" src="https://static.luozhinet.com/blog/images/zxkysbsjc/5.png?imageView2/2/w/600"><h3 id="第六步：进入小程序"><a href="#第六步：进入小程序" class="headerlink" title="第六步：进入小程序"></a>第六步：进入小程序</h3><p>进入小程序输入邮箱&#x2F;手机账号及密码</p><p><strong>小程序链接：</strong> <code>#小程序://AI体重管理小助手/UQBN6Mzr1FEUXBz</code></p><img title="小程序二维码" alt="小程序二维码" class="class1 class2" src="https://static.luozhinet.com/blog/images/zxkysbsjc/MiniProgramCode.png?imageView2/2/w/600"><h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul><li>⚠️ <strong>微信绑定后不能取消关注公众号【Amazfit】</strong></li><li>⚠️ <strong>取消关注就是解除绑定</strong></li><li>✅ 请确保使用QQ邮箱格式注册：<code>QQ号@qq.com</code></li><li>✅ 教程适用于安卓和苹果用户</li><li>✅ 请按照步骤顺序操作，不要跳过任何步骤</li></ul><h2 id="相关资源"><a href="#相关资源" class="headerlink" title="相关资源"></a>相关资源</h2><ul><li><a href="https://www.zepp.com/">Zepp官网</a></li><li><a href="https://mp.weixin.qq.com/s/7pNkclA8Pb09Zkx1vsZmeQ">微信运动官方说明</a></li></ul><hr><p><em>本文创建于 2025年9月27日</em></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 分享 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 微信 </tag>
+            
+            <tag> 教程分享 </tag>
+            
+            <tag> 技术 </tag>
+            
+            <tag> 刷步数 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>招商银行微信动账提醒开通工具</title>
+      <link href="/posts/61d1b897dcb0/"/>
+      <url>/posts/61d1b897dcb0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="招商银行微信动账提醒开通工具"><a href="#招商银行微信动账提醒开通工具" class="headerlink" title="招商银行微信动账提醒开通工具"></a>招商银行微信动账提醒开通工具</h1><blockquote><p>招商银行微信动账提醒，快速自助开通教程</p></blockquote><h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="1-关注服务号"><a href="#1-关注服务号" class="headerlink" title="1. 关注服务号"></a>1. 关注服务号</h3><p>微信关注”<strong>招商银行</strong>“服务号</p><img title="招商银行服务号二维码" alt="招商银行服务号二维码" class="class1 class2" src="https://static.luozhinet.com/blog/images/cmb-weixin-remind/cmb.png?imageView2/2/w/600"><h3 id="2-复制链接"><a href="#2-复制链接" class="headerlink" title="2. 复制链接"></a>2. 复制链接</h3><p>点击服务号菜单，复制链接地址</p><img title="教程" alt="教程" class="class1 class2" src="https://static.luozhinet.com/blog/images/cmb-weixin-remind/jc.jpg?imageView2/2/w/600"><h3 id="3-解析开通"><a href="#3-解析开通" class="headerlink" title="3. 解析开通"></a>3. 解析开通</h3><p>粘贴链接到下方工具中解析开通</p><div style="background:#f8f9fa; border-radius:8px; padding:20px; margin:20px 0;"><textarea id="cmbUrlInput" placeholder="请粘贴从招商银行服务号复制的链接..." style="width:100%; height:80px; padding:12px; border:1px solid #ddd; border-radius:6px; font-size:14px;"></textarea><div style="display:flex; gap:10px; margin-top:15px;"><button onclick="clearCmbInput()" style="flex:1; padding:10px; background:#6c757d; color:white; border:none; border-radius:6px; cursor:pointer;">清空</button><button onclick="parseCmbUrl()" style="flex:1; padding:10px; background:#c7000b; color:white; border:none; border-radius:6px; cursor:pointer;">解析</button></div></div><script>function clearCmbInput() {    const input = document.getElementById('cmbUrlInput');    if(input.value && confirm('确定要清空内容吗？')) {        input.value = '';    }}function parseCmbUrl() {    const url = document.getElementById('cmbUrlInput').value.trim();    if(!url) return alert('请先粘贴链接内容');        let openId, unionId;    let decodedUrl = url;        // 多层URL解码    for(let i = 0; i < 3; i++) {        try {            // 尝试从URL参数中获取            const urlObj = new URL(decodedUrl);            const params = new URLSearchParams(urlObj.search);                        openId = openId || params.get('OpenId') || params.get('openid');            unionId = unionId || params.get('UnionId') || params.get('unionid');                        // 进一步解码            const newDecoded = decodeURIComponent(decodedUrl);            if(newDecoded === decodedUrl) break;            decodedUrl = newDecoded;                    } catch(e) {            // 如果不是完整URL，尝试直接解析参数            if(decodedUrl.includes('OpenId=') || decodedUrl.includes('openid=')) {                const paramStr = decodedUrl.includes('?') ? decodedUrl.split('?')[1] : decodedUrl;                const params = new URLSearchParams(paramStr);                openId = openId || params.get('OpenId') || params.get('openid');                unionId = unionId || params.get('UnionId') || params.get('unionid');            }            break;        }    }        if(openId && unionId) {        if(confirm('解析成功！是否跳转到招商银行APP开通页面？')) {            window.location.href = `http://jump.m.cmbchina.com/ZEEUsFCX?UnionId=${unionId}&OpenId=${openId}`;        }    } else {        alert('解析失败，请检查链接是否正确或联系客服');    }}</script><h2 id="温馨提示"><a href="#温馨提示" class="headerlink" title="温馨提示"></a>温馨提示</h2><ul><li>请确保从招商银行<strong>服务号</strong>获取链接</li><li>本工具仅在浏览器本地运行，保障信息安全</li><li>开通后即可享受微信实时交易提醒</li></ul><hr><p><em>感谢使用，如有问题请留言反馈</em></p>]]></content>
       
       
       <categories>
@@ -101,11 +132,11 @@
       
         <tags>
             
-            <tag> 微信 </tag>
-            
             <tag> Zepp Life </tag>
             
             <tag> 运动步数 </tag>
+            
+            <tag> 微信 </tag>
             
             <tag> 支付宝 </tag>
             
@@ -188,19 +219,17 @@
             
             <tag> 地址 </tag>
             
-            <tag> import </tag>
-            
-            <tag> 文件 </tag>
-            
             <tag> 图片 </tag>
+            
+            <tag> 软件 </tag>
             
             <tag> 素材 </tag>
             
             <tag> 录制 </tag>
             
-            <tag> 同学 </tag>
+            <tag> 文件 </tag>
             
-            <tag> 软件 </tag>
+            <tag> 同学 </tag>
             
             <tag> 空间 </tag>
             
@@ -209,6 +238,8 @@
             <tag> 程序 </tag>
             
             <tag> 变量 </tag>
+            
+            <tag> import </tag>
             
             <tag> sudo </tag>
             
@@ -613,13 +644,13 @@
             
             <tag> 操作 </tag>
             
+            <tag> 文件 </tag>
+            
             <tag> import </tag>
             
             <tag> 压缩 </tag>
             
             <tag> target_ </tag>
-            
-            <tag> 文件 </tag>
             
             <tag> source_ </tag>
             
@@ -849,9 +880,9 @@
             
             <tag> 微信 </tag>
             
-            <tag> 操作 </tag>
-            
             <tag> 技巧 </tag>
+            
+            <tag> 操作 </tag>
             
             <tag> 授权 </tag>
             
