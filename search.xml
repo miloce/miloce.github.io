@@ -155,9 +155,9 @@
     
     
     <entry>
-      <title>【源码分享】ZeppLife微信支付宝刷步数源码分享非第三方接口</title>
-      <link href="/posts/d1ded2bacbfc/"/>
-      <url>/posts/d1ded2bacbfc/</url>
+      <title>ZeppLife微信支付宝刷步数源码分享非第三方接口</title>
+      <link href="/posts/2aea82a850f0/"/>
+      <url>/posts/2aea82a850f0/</url>
       
         <content type="html"><![CDATA[<p>通过 Zepp Life（原小米运动）API 实现了一个工具，可以同步用户的运动步数到微信和支付宝。<br>项目源码地址:<br><a href="https://github.com/miloce/Zepp-Life-Steps">https://github.com/miloce/Zepp-Life-Steps</a></p><blockquote><p>通过华米运动的 API 提交运动步数 😒 可实现同步运动步数至微信、支付宝等</p></blockquote><h2 id="📱-在线体验"><a href="#📱-在线体验" class="headerlink" title="📱 在线体验"></a>📱 在线体验</h2><p>Web 版本：</p><p><a href="https://steps.luozhinet.com/">https://steps.luozhinet.com</a></p><p>微信小程序：</p><p><img src="https://static.luozhinet.com/MiniProgramCode.png"></p><h2 id="✨-功能特点"><a href="#✨-功能特点" class="headerlink" title="✨ 功能特点"></a>✨ 功能特点</h2><ul><li>🎯 简洁美观的用户界面，操作简单直观</li><li>🔢 支持自定义步数，想改多少改多少</li><li>🚀 一键部署到 Vercel，零门槛使用</li><li>🔒 安全可靠，不会泄露您的账号信息</li><li>📊 支持历史记录查看</li><li>🔄 自动同步到微信、支付宝运动</li><li>🌐 提供 API 接口，支持 POST 和 GET 方式调用</li></ul><p>📸 应用界面</p><p><img src="https://cdn.jsdelivr.net/gh/miloce/Zepp-Life-Steps/img/app-interface.png"></p><h2 id="📖-使用方法"><a href="#📖-使用方法" class="headerlink" title="📖 使用方法"></a>📖 使用方法</h2><h3 id="Web-版本"><a href="#Web-版本" class="headerlink" title="Web 版本"></a>Web 版本</h3><ol><li>访问我们的网站 <a href="http://steps.luozhinet.com/">steps.luozhinet.com</a></li><li>输入您的 Zepp Life 账号和密码</li><li>设置您想要的步数</li><li>点击提交，等待同步完成</li></ol><h3 id="微信小程序版本"><a href="#微信小程序版本" class="headerlink" title="微信小程序版本"></a>微信小程序版本</h3><ol><li>扫描上方二维码进入小程序</li><li>登录您的 Zepp Life 账号</li><li>设置步数并提交</li><li>等待同步完成</li></ol><h3 id="API-接口调用"><a href="#API-接口调用" class="headerlink" title="API 接口调用"></a>API 接口调用</h3><p>您可以通过 POST 或 GET 请求调用接口修改步数，非常适合集成到自动化工具中。</p><h4 id="POST-方式"><a href="#POST-方式" class="headerlink" title="POST 方式"></a>POST 方式</h4><pre><code>POST /api/update-stepsContent-Type: application/json&#123;  &quot;account&quot;: &quot;您的账号&quot;,  &quot;password&quot;: &quot;您的密码&quot;,  &quot;steps&quot;: 步数值&#125;</code></pre><h4 id="GET-方式"><a href="#GET-方式" class="headerlink" title="GET 方式"></a>GET 方式</h4><pre><code>GET /api/update-steps?account=您的账号&amp;password=您的密码&amp;steps=想要的步数</code></pre><p><strong>参数说明：</strong></p><table><thead><tr><th>参数名</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td>account</td><td>string</td><td>是</td><td>Zepp Life 账号（邮箱或手机号）</td></tr><tr><td>password</td><td>string</td><td>是</td><td>账号密码</td></tr><tr><td>steps</td><td>number</td><td>否</td><td>想要修改的步数（不填则随机生成 20000 - 30000 之间的步数）</td></tr></tbody></table><p><strong>示例：</strong></p><pre><code>https://steps.luozhinet.com/api/update-steps?account=example@mail.com&amp;password=yourpassword&amp;steps=25000</code></pre><p><strong>返回结果：</strong></p><pre><code>&#123;  &quot;success&quot;: true,  &quot;message&quot;: &quot;步数修改成功: 25000&quot;,  &quot;data&quot;: &#123; ... &#125;&#125;</code></pre><h2 id="🛠️-本地开发"><a href="#🛠️-本地开发" class="headerlink" title="🛠️ 本地开发"></a>🛠️ 本地开发</h2><p>想要自己部署或者修改代码？没问题！</p><ol><li>克隆仓库：</li></ol><!----><pre><code>git clone https://github.com/miloce/Zepp-Life-Steps.gitcd Zepp-Life-Steps</code></pre><ol><li>安装依赖：</li></ol><!----><pre><code>npm install</code></pre><ol><li>运行开发服务器：</li></ol><!----><pre><code>npm run dev</code></pre><ol><li>打开浏览器访问 <a href="http://localhost:3000/">http://localhost:3000</a></li></ol><h2 id="🚀-部署到-Vercel"><a href="#🚀-部署到-Vercel" class="headerlink" title="🚀 部署到 Vercel"></a>🚀 部署到 Vercel</h2><p>想要自己部署一个实例？超级简单！</p><ol><li>将代码推送到 GitHub 仓库</li><li>在 Vercel 中导入该仓库</li><li>Vercel 将自动部署你的应用</li></ol><h2 id="⚙️-使用前准备"><a href="#⚙️-使用前准备" class="headerlink" title="⚙️ 使用前准备"></a>⚙️ 使用前准备</h2><ol><li>下载并注册 Zepp Life（原小米运动）应用</li><li>在微信中启用微信运动功能</li><li>在 Zepp Life 中将账户与微信运动绑定</li></ol><ul><li>进入 Zepp Life 点击”我的”</li><li>选择”第三方接入”</li><li>点击”微信”，最后扫码完成绑定</li></ul><h2 id="⚠️-注意事项"><a href="#⚠️-注意事项" class="headerlink" title="⚠️ 注意事项"></a>⚠️ 注意事项</h2><ul><li>请合理使用，不要频繁修改步数，以免被系统检测</li><li>建议每次修改的步数不要超过合理范围（一般不超过 50000 步）</li><li>请妥善保管您的账号密码，不要分享给他人</li><li>本工具仅供学习和研究使用，请勿用于非法用途</li><li>使用本工具产生的任何后果由使用者自行承担</li></ul><h2 id="📝-免责声明"><a href="#📝-免责声明" class="headerlink" title="📝 免责声明"></a>📝 免责声明</h2><p>本工具仅供学习和研究使用，使用本工具所产生的任何后果由使用者自行承担。我们不对因使用本工具而导致的任何问题负责。</p>]]></content>
       
@@ -174,6 +174,29 @@
             <tag> 支付宝 </tag>
             
             <tag> 源码分享 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>大学生必领福利：GitHub 学生包申请详细步骤</title>
+      <link href="/posts/d81821f9e51f/"/>
+      <url>/posts/d81821f9e51f/</url>
+      
+        <content type="html"><![CDATA[<p>上周刚白嫖到 <strong>GitHub 学生包</strong>，JetBrains 全家桶免费用一年，Copilot 写代码爽到飞起！</p><p>今天就把我的申请经验分享给大家，全程 <strong>10 分钟</strong>搞定，手残党也能学会！</p><hr><h2 id="一-GitHub-学生包是什么？"><a href="#一-GitHub-学生包是什么？" class="headerlink" title="一. GitHub 学生包是什么？"></a>一. GitHub 学生包是什么？</h2><img title="大学生必领福利：GitHub" alt="大学生必领福利：GitHub" class="class1 class2" src="https://static.luozhinet.com/blog/images/github-student-developer-pack/1.webp?imageView2/2/w/600"><p>说实话，我之前也不知道这玩意儿。</p><p>直到看到室友在用 <strong>IntelliJ IDEA</strong> 写 Java，界面酷炫的一批，一问才知道是 GitHub 学生包送的。</p><p>简单说，GitHub 给全球大学生发福利，只要你能证明自己是学生，就能免费领取价值好几万的开发工具：</p><p><strong>GitHub Copilot</strong> —— AI 帮你写代码，自动补全神器</p><p><strong>JetBrains 全家桶</strong> —— IDEA、PyCharm、WebStorm 全免费</p><p><strong>GitHub Pro</strong> —— 无限私有仓库</p><p><strong>Azure $100 额度</strong> —— 微软云服务器随便玩</p><p><strong>免费域名</strong> —— 搭个人博客必备</p><p><strong>还有 50+ 工具…</strong></p><blockquote><p>📌 申请入口：<a href="https://github.com/education">https://github.com/education</a></p></blockquote><hr><h2 id="二-申请前的准备工作"><a href="#二-申请前的准备工作" class="headerlink" title="二. 申请前的准备工作"></a>二. 申请前的准备工作</h2><p>很多人认证失败，问题往往出在准备阶段。下面这几件事 <strong>必须提前做好</strong>，不然大概率被拒。</p><h3 id="2-1-确保你有学校邮箱"><a href="#2-1-确保你有学校邮箱" class="headerlink" title="2.1 确保你有学校邮箱"></a>2.1 确保你有学校邮箱</h3><img title="大学生必领福利：GitHub" alt="大学生必领福利：GitHub" class="class1 class2" src="https://static.luozhinet.com/blog/images/github-student-developer-pack/2.webp?imageView2/2/w/600"><p>学校邮箱一般是 <code>.edu</code> 或者 <code>.edu.cn</code> 结尾，也有些学校用自己的域名（比如 <code>@xxx.university.cn</code>）。</p><p><strong>如果你注册 GitHub 用的不是学校邮箱</strong>，需要先把学校邮箱添加进去：</p><ol><li>打开 GitHub，点击右上角头像 → Settings</li><li>左侧找到 Emails</li><li>点击 Add email address，输入你的学校邮箱</li><li>去学校邮箱里点验证链接，完成验证</li></ol><h3 id="2-2-把个人资料改成真实信息"><a href="#2-2-把个人资料改成真实信息" class="headerlink" title="2.2 把个人资料改成真实信息"></a>2.2 把个人资料改成真实信息</h3><img title="大学生必领福利：GitHub" alt="大学生必领福利：GitHub" class="class1 class2" src="https://static.luozhinet.com/blog/images/github-student-developer-pack/3.webp?imageView2/2/w/600"><p>这一步很关键，GitHub 审核时会比对你提交的学生证明和账号信息。</p><ol><li>打开 Settings → Public profile</li><li><strong>Name：改成和学生证一致的姓名（大写拼音）</strong></li></ol><p>另外建议顺便把 <strong>Billing and plans → Payment information</strong> 里的姓名和地址也补全，保持和学生证一致。（同样使用大写拼音）</p><img title="大学生必领福利：GitHub" alt="大学生必领福利：GitHub" class="class1 class2" src="https://static.luozhinet.com/blog/images/github-student-developer-pack/4.webp?imageView2/2/w/600"><h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="2-3-配置好2FA"><a href="#2-3-配置好2FA" class="headerlink" title="2.3 配置好2FA"></a>2.3 配置好2FA</h3><img title="大学生必领福利：GitHub" alt="大学生必领福利：GitHub" class="class1 class2" src="https://static.luozhinet.com/blog/images/github-student-developer-pack/5.webp?imageView2/2/w/600"><h3 id="这一步是必须的，点击后来到下图："><a href="#这一步是必须的，点击后来到下图：" class="headerlink" title="这一步是必须的，点击后来到下图："></a>这一步是必须的，点击后来到下图：</h3><img title="大学生必领福利：GitHub" alt="大学生必领福利：GitHub" class="class1 class2" src="https://static.luozhinet.com/blog/images/github-student-developer-pack/6.webp?imageView2/2/w/600"><p>这时候，需要下载一个Auhenticator，打开扫描这个二维码。扫描后，会发一个6位数码给你。如图：</p><img title="大学生必领福利：GitHub" alt="大学生必领福利：GitHub" class="class1 class2" src="https://static.luozhinet.com/blog/images/github-student-developer-pack/7.webp?imageView2/2/w/600"><p>然后输入验证码。就会来到下面界面：</p><img title="大学生必领福利：GitHub" alt="大学生必领福利：GitHub" class="class1 class2" src="https://static.luozhinet.com/blog/images/github-student-developer-pack/8.webp?imageView2/2/w/600"><p>你点击下载之后，下面绿色就就可以点击</p><img title="大学生必领福利：GitHub" alt="大学生必领福利：GitHub" class="class1 class2" src="https://static.luozhinet.com/blog/images/github-student-developer-pack/9.webp?imageView2/2/w/600"><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><h3 id="2-4-准备好学生证明材料"><a href="#2-4-准备好学生证明材料" class="headerlink" title="2.4 准备好学生证明材料"></a>2.4 准备好学生证明材料</h3><p>审核时需要上传能证明你是在读学生的材料，<strong>优先推荐学生证</strong>，要求：</p><ol><li>能看清 <strong>学校名称</strong></li><li>能看清 <strong>你的姓名</strong></li><li>能看清 <strong>有效期</strong>（入学日期、毕业日期或当前学期日期）</li></ol><p>如果学生证不在手边，也可以用：</p><ul><li>成绩单</li><li>课程表（带学期信息）</li><li>学籍证明 &#x2F; 在读证明</li><li>学信网验证报告（登录 chsi.com.cn 申请）</li></ul><hr><h2 id="三-学生认证申请步骤"><a href="#三-学生认证申请步骤" class="headerlink" title="三. 学生认证申请步骤"></a>三. 学生认证申请步骤</h2><p>准备工作做完，下面正式开始申请。整个流程大概 5-10 分钟。</p><h3 id="3-1-进入申请页面"><a href="#3-1-进入申请页面" class="headerlink" title="3.1 进入申请页面"></a>3.1 进入申请页面</h3><p>打开：<code>https://github.com/settings/education/benefits</code></p><p>或者从 GitHub 首页点：头像 → Settings → 左侧 Education → Education benefits</p><p>找到「GitHub Education」板块，点击 <strong>Start an application</strong>。</p><img title="教程" alt="教程" class="class1 class2" src="https://static.luozhinet.com/blog/images/github-student-developer-pack/10.webp?imageView2/2/w/600"><h3 id="3-2-选择身份并填写信息"><a href="#3-2-选择身份并填写信息" class="headerlink" title="3.2 选择身份并填写信息"></a>3.2 选择身份并填写信息</h3><ol><li>身份选 <strong>Student</strong></li><li>学校名称会有下拉列表，输入你学校的名称，从列表里选。有Select this school选项可以直接选择!<img title="大学生必领福利：GitHub" alt="大学生必领福利：GitHub" class="class1 class2" src="https://static.luozhinet.com/blog/images/github-student-developer-pack/11.webp?imageView2/2/w/600"></li><li>点击Share Location共享位置，需要确保位置在学校内或附近，不然后面可能会多一个验证，不在学校的可以通过F12开发人员工具进行伪装位置。<img title="大学生必领福利：GitHub" alt="大学生必领福利：GitHub" class="class1 class2" src="https://static.luozhinet.com/blog/images/github-student-developer-pack/12.webp?imageView2/2/w/600"></li></ol><h3 id="3-3-上传学生证明"><a href="#3-3-上传学生证明" class="headerlink" title="3.3 上传学生证明"></a>3.3 上传学生证明</h3><p>这一步是重点，需要用摄像头拍摄你的学生证（或其他证明材料）。</p><img title="大学生必领福利：GitHub" alt="大学生必领福利：GitHub" class="class1 class2" src="https://static.luozhinet.com/blog/images/github-student-developer-pack/13.webp?imageView2/2/w/600"><blockquote><p><strong>⚠️ 踩坑提醒</strong></p><p>• 必须用真实摄像头拍摄，不能用虚拟摄像头或者直接上传图片文件• 拍摄时确保光线充足，学校名称、姓名、日期都要能看清• 用国内网络直连，不能使用学术上网• 定位权限要允许，最好在学校或学校附近操作</p></blockquote><h3 id="3-4-提交并等待审核"><a href="#3-4-提交并等待审核" class="headerlink" title="3.4 提交并等待审核"></a>3.4 提交并等待审核</h3><p>点击 <strong>Submit application</strong> 提交。</p><p>审核时间：</p><ul><li>大部分情况下是 <strong>机器审核</strong>，几分钟内就有结果</li><li>少数情况需要人工复核，可能要 1-3 天</li></ul><p>审核通过后，你会收到邮件通知，GitHub 账号也会显示学生身份标识。</p><img title="大学生必领福利：GitHub" alt="大学生必领福利：GitHub" class="class1 class2" src="https://static.luozhinet.com/blog/images/github-student-developer-pack/14.webp?imageView2/2/w/600"><hr><h2 id="四-领取福利"><a href="#四-领取福利" class="headerlink" title="四. 领取福利"></a>四. 领取福利</h2><p>学生认证通过后，福利不会自动开通，还需要手动领取。</p><h3 id="4-1-进入-GitHub-Student-Developer-Pack"><a href="#4-1-进入-GitHub-Student-Developer-Pack" class="headerlink" title="4.1 进入 GitHub Student Developer Pack"></a>4.1 进入 GitHub Student Developer Pack</h3><p>打开到我们申请学生认证界面，有一个学生包链接和copilot pro会员领取的超链接我们可以。或直接打开：<code>https://education.github.com/pack</code></p><img title="大学生必领福利：GitHub" alt="大学生必领福利：GitHub" class="class1 class2" src="https://static.luozhinet.com/blog/images/github-student-developer-pack/15.webp?imageView2/2/w/600"><h3 id="4-2-领取学生包"><a href="#4-2-领取学生包" class="headerlink" title="4.2 领取学生包"></a>4.2 领取学生包</h3><p>页面上会显示所有可用的福利，点击 <strong>对应的领取链接</strong> 逐个领取：</p><img title="大学生必领福利：GitHub" alt="大学生必领福利：GitHub" class="class1 class2" src="https://static.luozhinet.com/blog/images/github-student-developer-pack/16.webp?imageView2/2/w/600"><blockquote><p><strong>后续我也会更新针对小白的免费服务器，域名等领取教程，感兴趣的可以关注微信公众号“开源栈”</strong></p></blockquote><h2 id="五-总结"><a href="#五-总结" class="headerlink" title="五. 总结"></a>五. 总结</h2><p>整个流程梳理一下：</p><ol><li><strong>准备阶段：</strong> 添加学校邮箱、做好2FA认证、个人资料改真实信息、准备好学生证</li><li><strong>申请认证：</strong> 进入 Education 页面 → 选 Student → 拍学生证 → 提交</li><li><strong>领取福利：</strong> 认证通过后去 Student Pack 页面点击获取权限</li></ol><blockquote><p>🎉 如果你身边也有同学在学编程，可以把这篇转给 TA，省下的钱一起吃顿饭不香吗？</p></blockquote><p>有问题欢迎在评论区留言，我看到会回复 👇</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> GitHub </tag>
+            
+            <tag> 学生福利 </tag>
+            
+            <tag> 开发工具 </tag>
             
         </tags>
       
@@ -252,17 +275,19 @@
             
             <tag> 地址 </tag>
             
-            <tag> 图片 </tag>
+            <tag> import </tag>
             
-            <tag> 软件 </tag>
+            <tag> 文件 </tag>
+            
+            <tag> 图片 </tag>
             
             <tag> 素材 </tag>
             
             <tag> 录制 </tag>
             
-            <tag> 文件 </tag>
-            
             <tag> 同学 </tag>
+            
+            <tag> 软件 </tag>
             
             <tag> 空间 </tag>
             
@@ -271,8 +296,6 @@
             <tag> 程序 </tag>
             
             <tag> 变量 </tag>
-            
-            <tag> import </tag>
             
             <tag> sudo </tag>
             
@@ -677,13 +700,13 @@
             
             <tag> 操作 </tag>
             
-            <tag> 文件 </tag>
-            
             <tag> import </tag>
             
             <tag> 压缩 </tag>
             
             <tag> target_ </tag>
+            
+            <tag> 文件 </tag>
             
             <tag> source_ </tag>
             

@@ -6,7 +6,7 @@
   <link href="https://blog.luozhinet.com/atom.xml" rel="self"/>
   
   <link href="https://blog.luozhinet.com/"/>
-  <updated>2025-09-27T17:45:15.598Z</updated>
+  <updated>2025-09-28T07:54:57.787Z</updated>
   <id>https://blog.luozhinet.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://blog.luozhinet.com/posts/b2dc15e2ff89/"/>
     <id>https://blog.luozhinet.com/posts/b2dc15e2ff89/</id>
     <published>2025-09-27T17:40:00.000Z</published>
-    <updated>2025-09-27T17:45:15.598Z</updated>
+    <updated>2025-09-28T07:54:57.787Z</updated>
     
     
       
@@ -168,11 +168,11 @@
   </entry>
   
   <entry>
-    <title>【源码分享】ZeppLife微信支付宝刷步数源码分享非第三方接口</title>
-    <link href="https://blog.luozhinet.com/posts/d1ded2bacbfc/"/>
-    <id>https://blog.luozhinet.com/posts/d1ded2bacbfc/</id>
+    <title>ZeppLife微信支付宝刷步数源码分享非第三方接口</title>
+    <link href="https://blog.luozhinet.com/posts/2aea82a850f0/"/>
+    <id>https://blog.luozhinet.com/posts/2aea82a850f0/</id>
     <published>2025-05-11T02:55:06.000Z</published>
-    <updated>2025-05-11T05:48:20.172Z</updated>
+    <updated>2026-03-15T16:34:18.843Z</updated>
     
     
       
@@ -195,6 +195,34 @@
     <category term="支付宝" scheme="https://blog.luozhinet.com/tags/%E6%94%AF%E4%BB%98%E5%AE%9D/"/>
     
     <category term="源码分享" scheme="https://blog.luozhinet.com/tags/%E6%BA%90%E7%A0%81%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>大学生必领福利：GitHub 学生包申请详细步骤</title>
+    <link href="https://blog.luozhinet.com/posts/d81821f9e51f/"/>
+    <id>https://blog.luozhinet.com/posts/d81821f9e51f/</id>
+    <published>2025-03-16T04:00:00.000Z</published>
+    <updated>2026-03-15T16:50:07.320Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;上周刚白嫖到 &lt;strong&gt;GitHub 学生包&lt;/strong&gt;，JetBrains 全家桶免费用一年，Copilot 写代码爽到飞起！&lt;/p&gt;
+&lt;p&gt;今天就把我的申请经验分享给大家，全程 &lt;strong&gt;10</summary>
+        
+      
+    
+    
+    
+    
+    <category term="GitHub" scheme="https://blog.luozhinet.com/tags/GitHub/"/>
+    
+    <category term="学生福利" scheme="https://blog.luozhinet.com/tags/%E5%AD%A6%E7%94%9F%E7%A6%8F%E5%88%A9/"/>
+    
+    <category term="开发工具" scheme="https://blog.luozhinet.com/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
@@ -278,17 +306,19 @@
     
     <category term="地址" scheme="https://blog.luozhinet.com/tags/%E5%9C%B0%E5%9D%80/"/>
     
-    <category term="图片" scheme="https://blog.luozhinet.com/tags/%E5%9B%BE%E7%89%87/"/>
+    <category term="import" scheme="https://blog.luozhinet.com/tags/import/"/>
     
-    <category term="软件" scheme="https://blog.luozhinet.com/tags/%E8%BD%AF%E4%BB%B6/"/>
+    <category term="文件" scheme="https://blog.luozhinet.com/tags/%E6%96%87%E4%BB%B6/"/>
+    
+    <category term="图片" scheme="https://blog.luozhinet.com/tags/%E5%9B%BE%E7%89%87/"/>
     
     <category term="素材" scheme="https://blog.luozhinet.com/tags/%E7%B4%A0%E6%9D%90/"/>
     
     <category term="录制" scheme="https://blog.luozhinet.com/tags/%E5%BD%95%E5%88%B6/"/>
     
-    <category term="文件" scheme="https://blog.luozhinet.com/tags/%E6%96%87%E4%BB%B6/"/>
-    
     <category term="同学" scheme="https://blog.luozhinet.com/tags/%E5%90%8C%E5%AD%A6/"/>
+    
+    <category term="软件" scheme="https://blog.luozhinet.com/tags/%E8%BD%AF%E4%BB%B6/"/>
     
     <category term="空间" scheme="https://blog.luozhinet.com/tags/%E7%A9%BA%E9%97%B4/"/>
     
@@ -297,8 +327,6 @@
     <category term="程序" scheme="https://blog.luozhinet.com/tags/%E7%A8%8B%E5%BA%8F/"/>
     
     <category term="变量" scheme="https://blog.luozhinet.com/tags/%E5%8F%98%E9%87%8F/"/>
-    
-    <category term="import" scheme="https://blog.luozhinet.com/tags/import/"/>
     
     <category term="sudo" scheme="https://blog.luozhinet.com/tags/sudo/"/>
     
@@ -630,40 +658,6 @@
     <category term="商店" scheme="https://blog.luozhinet.com/tags/%E5%95%86%E5%BA%97/"/>
     
     <category term="play" scheme="https://blog.luozhinet.com/tags/play/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>腾讯智影AI剪辑-在线视频剪辑</title>
-    <link href="https://blog.luozhinet.com/posts/94456e62e22c/"/>
-    <id>https://blog.luozhinet.com/posts/94456e62e22c/</id>
-    <published>2022-05-13T01:29:00.000Z</published>
-    <updated>2022-05-18T15:05:28.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;智影剪辑是腾讯出品在线视频剪辑工作，能够快速帮您制作短视频，提高剪辑效率！&lt;/p&gt;
-&lt;h2 id=&quot;介绍：&quot;&gt;&lt;a href=&quot;#介绍：&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="网站推荐" scheme="https://blog.luozhinet.com/categories/%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90/"/>
-    
-    
-    <category term="视频" scheme="https://blog.luozhinet.com/tags/%E8%A7%86%E9%A2%91/"/>
-    
-    <category term="素材" scheme="https://blog.luozhinet.com/tags/%E7%B4%A0%E6%9D%90/"/>
-    
-    <category term="剪辑" scheme="https://blog.luozhinet.com/tags/%E5%89%AA%E8%BE%91/"/>
-    
-    <category term="智影" scheme="https://blog.luozhinet.com/tags/%E6%99%BA%E5%BD%B1/"/>
-    
-    <category term="生成" scheme="https://blog.luozhinet.com/tags/%E7%94%9F%E6%88%90/"/>
     
   </entry>
   
