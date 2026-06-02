@@ -6,7 +6,7 @@
   <link href="https://blog.luozhinet.com/atom.xml" rel="self"/>
   
   <link href="https://blog.luozhinet.com/"/>
-  <updated>2025-09-28T07:54:57.787Z</updated>
+  <updated>2026-06-02T11:03:53.812Z</updated>
   <id>https://blog.luozhinet.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DeepCodex：让 Codex 用上 DeepSeek，小白也能开箱即用</title>
+    <link href="https://blog.luozhinet.com/posts/e91323c67bb7/"/>
+    <id>https://blog.luozhinet.com/posts/e91323c67bb7/</id>
+    <published>2026-06-02T10:00:00.000Z</published>
+    <updated>2026-06-02T11:03:53.812Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;DeepCodex：让-Codex-用上-DeepSeek，小白也能开箱即用&quot;&gt;&lt;a href=&quot;#DeepCodex：让-Codex-用上-DeepSeek，小白也能开箱即用&quot; class=&quot;headerlink&quot; title=&quot;DeepCodex：让</summary>
+        
+      
+    
+    
+    
+    <category term="技术教程" scheme="https://blog.luozhinet.com/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="DeepCodex" scheme="https://blog.luozhinet.com/tags/DeepCodex/"/>
+    
+    <category term="Codex" scheme="https://blog.luozhinet.com/tags/Codex/"/>
+    
+    <category term="DeepSeek" scheme="https://blog.luozhinet.com/tags/DeepSeek/"/>
+    
+    <category term="AI编程" scheme="https://blog.luozhinet.com/tags/AI%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>零成本搭建跨域代理服务 - Cloudflare Workers实战指南</title>
@@ -626,38 +657,6 @@
     <category term="删除图片" scheme="https://blog.luozhinet.com/tags/%E5%88%A0%E9%99%A4%E5%9B%BE%E7%89%87/"/>
     
     <category term="Magiceraser" scheme="https://blog.luozhinet.com/tags/Magiceraser/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>绕过Google play下载APK的一种方式</title>
-    <link href="https://blog.luozhinet.com/posts/fb79b38d6277/"/>
-    <id>https://blog.luozhinet.com/posts/fb79b38d6277/</id>
-    <published>2022-05-13T01:29:00.000Z</published>
-    <updated>2023-01-13T16:22:56.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Google 太强势了，很多手机也安装不了GMS，又想用play商店里面的软件，该怎么办呢？&lt;/p&gt;
-&lt;h2 id=&quot;介绍：&quot;&gt;&lt;a href=&quot;#介绍：&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="网站推荐" scheme="https://blog.luozhinet.com/categories/%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90/"/>
-    
-    
-    <category term="google" scheme="https://blog.luozhinet.com/tags/google/"/>
-    
-    <category term="下载" scheme="https://blog.luozhinet.com/tags/%E4%B8%8B%E8%BD%BD/"/>
-    
-    <category term="商店" scheme="https://blog.luozhinet.com/tags/%E5%95%86%E5%BA%97/"/>
-    
-    <category term="play" scheme="https://blog.luozhinet.com/tags/play/"/>
     
   </entry>
   
